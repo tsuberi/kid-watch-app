@@ -19,7 +19,7 @@ export class Bl {
   _Kindergarten = new Kindergarten();
 
   constructor(public http: Http,private router : Router) {
-    let LocalKindergarten = JSON.parse( localStorage.getItem('Kindergarten'));
+    let LocalKindergarten = Object.assign(new Kindergarten(),JSON.parse( localStorage.getItem('Kindergarten')));
     if ( LocalKindergarten ){
       this._Kindergarten = LocalKindergarten;
     }

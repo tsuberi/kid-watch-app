@@ -4,7 +4,7 @@ import {FORM_DIRECTIVES} from "@angular/forms";
 import {CORE_DIRECTIVES, NgStyle, NgClass} from "@angular/common";
 import {ChildComponent} from '../Child';
 import {Bl} from '../../bl';
-import {Child, Kindergarten} from "../../bl/models";
+import {Child, Kindergarten, Responsible} from "../../bl/models";
 import {Observable} from "rxjs/Rx";
 import {Http} from "@angular/http";
 
@@ -23,7 +23,7 @@ export class RegisterChildComponent implements OnInit {
   public uploader:FileUploader = new FileUploader({url: '/_ah/upload/ag1kZXZ-Y2tpZC1ja2lkciILEhVfX0Jsb2JVcGxvYWRTZXNzaW9uX18YgICAgIDIxwoM'});
   errorMessage;
   _KindergartenList = [];
-
+  _Responsibles: Responsible[] = [];
 
   _Name = '';
   _Image = '';
@@ -32,6 +32,26 @@ export class RegisterChildComponent implements OnInit {
   _Gander = '';
   _Loaded : boolean = false;
 
+  _FreshResponsible = new Responsible();
+
+  constructor(private _BL: Bl, public http: Http) {
+    this.uploader.onCompleteItem = (fileItem, response, status, headers) => {
+      console.info('onSuccessItem', fileItem, response, status, headers);
+
+
+      this._NewChild.image = fileItem._xhr.response;
+      this._BL._Kindergarten.child_list.push(this._NewChild);
+      this._BL.SaveKindergarten().subscribe();
+
+      this.uploader.clearQueue();
+      this._Loaded = false;
+
+
+
+    };
+
+    this._Responsibles = this._BL._Kindergarten.responsibles;
+  }
 
   CreateMap() {
     if (this._SelectedKindergartenList) {
@@ -76,7 +96,6 @@ export class RegisterChildComponent implements OnInit {
 
   }
 
-
   ngOnInit() {
 
     console.log('Hello RegisterChild');
@@ -103,8 +122,9 @@ export class RegisterChildComponent implements OnInit {
         }
       } ,
       error => this.errorMessage = <any>error);
-  }
 
+
+  }
 
   upload() {
 
@@ -137,6 +157,18 @@ export class RegisterChildComponent implements OnInit {
       );
   }
 
+  addResponsible(){
+    this._Responsibles.push(this._FreshResponsible);
+    this._FreshResponsible = new Responsible();
+  }
+
+  removeResponsible(item: Responsible){
+    this._Responsibles.splice(this._Responsibles.indexOf(item),1);
+  }
+
+  saveResponsibles(){
+    this._BL.SaveKindergarten().subscribe()
+  }
 
   handleError(err: any) {
     return Observable.throw(err);
@@ -146,23 +178,5 @@ export class RegisterChildComponent implements OnInit {
     return data; // JSON.parse(data._body)[0];
   }
 
-  constructor(private _BL: Bl, public http: Http) {
 
-
-    this.uploader.onCompleteItem = (fileItem, response, status, headers) => {
-      console.info('onSuccessItem', fileItem, response, status, headers);
-
-
-      this._NewChild.image = fileItem._xhr.response;
-      this._BL._Kindergarten.child_list.push(this._NewChild);
-      this._BL.SaveKindergarten().subscribe();
-
-      this.uploader.clearQueue();
-      this._Loaded = false;
-
-
-
-    };
-
-  }
 }

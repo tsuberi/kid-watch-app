@@ -20,6 +20,7 @@ export class Phone {
 export class Responsible {
   _Name: string = '';
   _Title: string = '';
+  _Phone: string = '';
 
   constructor() {}
 };
@@ -92,6 +93,7 @@ export class Kindergarten {
   location: Location = new Location();
   contactInformation: ContactInformation = new ContactInformation();
   child_list: Child [] = [];
+  responsibles: Responsible[] = [];
   employee_list: Employee[] = [];
   email: string = '';
   phone: string = '';
@@ -105,10 +107,7 @@ export class Kindergarten {
   userUrlID: string = '';
   kindergarten_id: string = null;
   auth: AuthData = new AuthData();
-  
+
   constructor() {
-    // code...
   }
-
-
-};
+}
