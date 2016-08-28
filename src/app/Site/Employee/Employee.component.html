@@ -1,0 +1,55 @@
+
+<div class="ui red segment EmployeeComponent "  >
+    <div class="ui divided items">
+      <div class="item">
+        <div class=" ui medium image">
+          <img class="ui mini image spaced" src="{{_Url}}view_photo/{{_Employee.image}}">
+        </div>
+        <div class="content paddingRight50 ">
+          <button (click)="delete()" class="ui icon red button  left floated">
+            <i class="delete icon"></i>
+
+          </button>
+
+          <div class="meta">
+
+            <span class="header"><h2>{{_Employee._Name}}</h2> </span>
+          </div>
+
+
+          <div class="meta">
+            <span class="cinema">שם :</span>
+            <span class="cinema"><b>{{_Employee.name}}</b> </span>
+          </div>
+
+          <div class="meta">
+            <span class="cinema">תפקיד :</span>
+            <span class="cinema"><b>{{_Employee.position}}</b> </span>
+          </div>
+          <div class="meta">
+            <span class="cinema">טלפון : </span>
+            <span class="cinema">{{_Employee.cellPhone}}</span>
+          </div>
+          <div class="meta">
+            <span class="cinema">דוא"ל : </span>
+            <span class="cinema">{{_Employee.email}}</span>
+          </div>
+          <div class="meta">
+            <span class="cinema">עיר : </span>
+            <span class="cinema">{{_Employee.city}}</span>
+          </div>
+          <div class="meta">
+            <span class="cinema">כתובת :</span>
+            <span class="cinema">{{_Employee.address}}</span>
+          </div>
+          <div class="description">
+            <span class="cinema">ניסיון :</span>
+            <p>
+              {{_Employee.experience}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+

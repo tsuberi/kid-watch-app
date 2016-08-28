@@ -1,0 +1,180 @@
+
+
+<div  class="ui  teal  inverted segment ">
+  <div class="ui   container ">
+    <h1>
+      רישום ילד למערכת וואצקיד בגן XXX
+    </h1>
+    <p>
+      שירות מערכת מוצעת חינם עבור גני ילדים , המערכת מאפשר מעקב אחרי הילדים שהגיעו ו\או עזבו את הגן.
+    </p>
+    <p>
+      שירות זה יוכל לעזור לכם לקדם את הגן להורי הילדים בדיוק כמו שהמצלמות בגן הם הכרח להורי הילדים, מערכת וואצקיד תאפשרת
+      לכם לשמור על בטחון הילדים בכך שתוכלו לנהל את הגן ולקבל את הילדים בברכה ללא דאגה האם חסר ילד בקבוצה.
+      מערכת וואצקיד תתריע אתכם כאשר ילד לא הגיע לגן ויודיע לאחראים על כך בשליחת מיסרון לאחרים .
+    </p>
+    <h4>
+      שירותי וואצקיד
+    </h4>
+    <ul>
+
+      <li>
+        רישום למערכת וואצקיד חינם .
+
+      </li>
+
+    </ul>
+
+    <div  *ngIf="!_Loaded" class="ui active centered inline loader"></div>
+
+  </div>
+</div>
+
+<div   class="ui  Subject  container">
+  חיפוש גן
+  <div class="ui divider"></div>
+</div>
+
+<div   class="ui   container">
+  <div class="ui   container equal width form">
+    <div class="fields">
+      <div *ngIf="_KindergartenList" class="field">
+
+        <select #sel (change)="onChange(sel.value)">
+          <option value="{{Kindergarten.auth.email}}" *ngFor="let Kindergarten of _KindergartenList; let i = index" [selected]="i == 0">
+            <h2>
+              {{Kindergarten.name}}
+            </h2>
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="ui green segment EmployeeComponent ">
+      <div class="ui divided items">
+        <div class="item">
+          <div style="width: 50%;padding-left: 20px;" class=" ui medium image">
+            <div id="MapContainer">&nbsp;</div>
+          </div>
+          <div *ngIf="_SelectedKindergartenList" class="content  ">
+
+            <div class="meta">
+              <span class="cinema">שם :</span>
+              <span class="cinema"><b>{{_SelectedKindergartenList.name}}</b> </span>
+            </div>
+            <div class="meta">
+              <span class="cinema">עיר : </span>
+              <span class="cinema"><b>{{_SelectedKindergartenList.location.city}}</b></span>
+            </div>
+            <div class="meta">
+              <span class="cinema">כתובת :</span>
+              <span class="cinema"><b>{{_SelectedKindergartenList.location.address}}</b></span>
+            </div>
+            <div class="meta">
+              <span class="cinema">טלפון נייד : </span>
+              <span class="cinema"><b>{{_SelectedKindergartenList.cellPhone}}</b></span>
+            </div>
+            <div class="meta">
+              <span class="cinema">טלפון : </span>
+              <span class="cinema"><b>{{_SelectedKindergartenList.phone}}</b></span>
+            </div>
+            <!--<div class="meta">
+              <span class="cinema">דוא"ל : </span>
+              <span class="cinema"><b>{{_SelectedKindergartenList.email}}</b></span>
+            </div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui   container">
+    <div  class="ui   container equal width form">
+      <div  *ngFor="let e of _BL._Kindergarten.child_list;let i=index">
+        <div class="ui ChildComponent ">
+          <my-child [_Child]="e"></my-child>
+        </div>
+      </div>
+      <div class="ui Subject  container">
+
+        <div class="ui header padding-top40">
+          פרטי הילד\ה
+        </div>
+        <div class="ui divider"></div>
+        <div class="ui secondary segment ">
+          <div class="fields">
+            <div class="field">
+              <label>שם הילד/ה</label>
+              <input [(ngModel)]="_Name" type="text" placeholder="שם הילד/ה">
+            </div>
+            <div class="field">
+              <label>תאריך לידה</label>
+              <div class="ui calendar" id="calendar">
+                <div class="ui input right icon">
+                  <i class="calendar icon"></i>
+                  <input [(ngModel)]="_BirthDay" style="text-align: right;" class="ui left floated" type="text"
+                         placeholder="תאריך לידה">
+                </div>
+              </div>
+            </div>
+            <div class="field choise">
+              <div class="inline fields">
+                <div class="field"></div>
+                <div class="field">
+                  <div class="ui radio checkbox">
+                    <input #male name="gender" type="radio" value="Male" (click)="_Gander = 'Boy'"/>
+                    <label>בן</label>
+                  </div>
+                </div>
+                <div class="field">
+                  <div class="ui radio checkbox">
+                    <input #female name="gender" type="radio" value="Female" (click)="_Gander = 'Girl'"/>
+                    <label>בת</label>
+                  </div>
+                </div>
+                <div class="field"></div>
+              </div>
+            </div>
+          </div>
+          <div class="ui grid">
+            <div class="two wide column">
+              <div>
+                <label for="file" class="ui icon blue button">
+                  <i class="file icon"></i>                  תמונה
+                </label>
+                <input type="file" id="file" ng2FileSelect [uploader]="uploader" style="display:none"
+                       accept="image/jpg,image/png,image/jpeg,image/gif">
+              </div>
+            </div>
+            <div class="fourteen wide column">
+              <div class="progress" style="">
+                <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }">
+                  <div *ngIf="uploader.progress">
+                    {{ uploader.progress}}%
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--  <div class="fields">
+              <div class="field">
+                <label>תאור קצר - (ספר על הילד)</label>
+                <textarea [(ngModel)]="_EmployeeExperience" rows="2" ></textarea>
+              </div>
+
+            </div>
+    -->
+          <div class="fields">
+            <div class="field ">
+              <div class="ui vertical animated    teal button left floated " tabindex="0" (click)="addChild()">
+                <div class="hidden content">הוסף</div>
+                <div class="visible content">
+                  <i class="plus icon"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

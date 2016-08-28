@@ -1,0 +1,155 @@
+<div class="ui top fixed menu green inverted segment TopMenu">
+  <div class="item">
+    <my-clock></my-clock>
+  </div>
+  <div class="item">
+     <span class="Time">
+                נכנסו 6 מתוך 20
+      </span>
+  </div>
+  <div class="item">
+     <span class="Time">
+        שעת כניסה : 09:15
+      </span>
+    <div class="item">
+       <span class="Time">
+        שעת יציאה : 14:30
+      </span>
+    </div>
+  </div>
+
+</div>
+
+<div class="ui CardWrap" style="text-align: center;">
+  <div  *ngFor="let e of _BL._Kindergarten.child_list;let i=index">
+      <my-child [_Child]="e"></my-child>
+  </div>
+</div>
+
+
+
+<!--
+
+
+<div class="ui CardWrap ">
+  <div class="ui special two stackable  cards">
+    <div class="card">
+      <div class="blurring dimmable image">
+        <div class="ui dimmer">
+          <div class="content">
+            <div class="center">
+              <div class="column">
+                <div class="ui green compact  massive button margin-20">
+                  <h2>
+                    הגעתי לגן
+                  </h2>
+                </div>
+              </div>
+              <div class="column">
+                <div class="ui blue compact massive button">
+                  <h2>
+                    לא אגיע היום
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <img class="ui Small images" src="/img/girl-1511710_1920.jpg">
+
+
+      </div>
+      <div class="content">
+        <h1 class="ui header">אלברט איינשיין</h1>
+        <h2 class="ui header">5 בן</h2>
+        <h2 class="ui header">6/10/2010 -נולדתי ב</h2>
+
+        <div class="meta">
+          <span class="date">Create in Sep 2014</span>
+        </div>
+      </div>
+      <div class="extra content">
+        <a>
+          <i class="users icon"></i>
+          2 Members
+        </a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="blurring dimmable image ">
+        <div class="ui dimmer">
+          <div class="content">
+            <div class="center">
+              <div class="column">
+                <div class="ui green compact  massive button margin-20">
+                  <h2>
+                    הגעתי לגן
+                  </h2>
+                </div>
+              </div>
+              <div class="column">
+                <div class="ui blue compact massive button">
+                  <h2>
+                    לא אגיע היום
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <img class="ui Tiny images" src="/img/baby-552610_1920.jpg">
+      </div>
+      <div class="content">
+        <h1 class="ui header">אלברט איינשיין</h1>
+        <div class="meta">
+          <span class="date">Create in Sep 2014</span>
+        </div>
+      </div>
+      <div class="extra content">
+        <a>
+          <i class="users icon"></i>
+          2 Members
+        </a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="blurring dimmable image">
+        <div class="ui dimmer">
+          <div class="content">
+            <div class="center">
+              <div class="column">
+                <div class="ui green compact massive button margin-20">
+                  <h2>
+                    הגעתי לגן
+                  </h2>
+                </div>
+              </div>
+              <div class="column">
+                <div class="ui blue compact massive button">
+                  <h2>
+                    לא אגיע היום
+                  </h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <img src="/img/child-1260411_1920.jpg">
+      </div>
+      <div class="content">
+        <h1 class="ui header">אלברט איינשיין</h1>
+        <div class="meta">
+          <span class="date">Create in Sep 2014</span>
+        </div>
+      </div>
+      <div class="extra content">
+        <a>
+          <i class="users icon"></i>
+          2 Members
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+-->

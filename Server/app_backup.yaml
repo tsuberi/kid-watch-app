@@ -1,0 +1,48 @@
+application: prb-resume
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+
+
+
+- url: /Client
+  static_dir: Client
+
+
+- url: /Scripts
+  static_dir: Scripts
+
+- url: /bower_components
+  static_dir: bower_components
+
+
+- url: /Css
+  static_dir: Css
+
+- url: /Images
+  static_dir: Images
+
+
+
+- url: /_ah/spi/.*
+  script: main.api
+
+- url: /api.*
+  script: Upload.application
+
+
+- url: /
+  static_files: index.html
+  upload: index.html
+
+
+libraries:
+- name: endpoints
+  version: 1.0
+- name: pycrypto
+  version: latest
+- name: webapp2
+  version: 2.5.2

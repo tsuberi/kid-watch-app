@@ -1,0 +1,1 @@
+export * from './RegisterKindergarten.component';

@@ -1,0 +1,34 @@
+<div class="ui vertical inverted segment cover" >
+  <div class="ui secondary inverted pointing menu container">
+
+    <a [routerLink]="['/site/RegisterChild']" [routerLinkActive]="'active'" class="item">
+      רישום ילד - ילדה
+    </a>
+    <a [routerLink]="['/site/RegisterKindergarten']" [routerLinkActive]="'active'"  class="item">
+      רישום גן
+    </a>
+    <a [routerLink]="['/site/item', 2]"  [routerLinkActive]="'active'" class="item">
+      Site Item 2
+    </a>
+    <a class="item">
+      Friends
+    </a>
+    <a [routerLink]="['/kindergarten']" [routerLinkActive]="'active'"  class="item">
+      kindergarten
+    </a>
+    <div [routerLink]="['/site/login']"  class="right menu"  >
+      <a class="ui item" (click)="auth.login()" *ngIf="!auth.authenticated()" >
+        Login
+      </a>
+    </div>
+    <div *ngIf="auth.authenticated()" [routerLink]="['/site/logout']"    class="right menu">
+      <a class="ui item" (click)="auth.logout()" *ngIf="auth.authenticated()">
+        Logout
+      </a>
+      <img  height="35" width="35" [src]="_BL._Kindergarten.auth.picture">
+
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

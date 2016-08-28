@@ -1,0 +1,10 @@
+.ChildComponent
+{
+  display: none;
+}
+
+.paddingRight50
+{
+  padding-right: 50px !important;
+  padding-left: 0px !important;
+}
