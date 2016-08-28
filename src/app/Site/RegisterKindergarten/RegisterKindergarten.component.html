@@ -30,144 +30,162 @@
 
 <div class="ui  Subject  container">
   פרטים כללים
+  <div class="ui left floated green button" (click)="save()">
+    שמור
+  </div>
   <div class="ui divider"></div>
+
+
 </div>
 
 
 <div class="ui   container">
 
-  <div class="ui   container equal width form KindergartenForm">
-    <div class="fields">
-      <div class="field">
-        <label>שם הגן </label>
-        <input [(ngModel)]="_BL._Kindergarten.name" type="text" placeholder="שם הגן" name="name" >
-      </div>
-      <div class="field">
-        <label> כתובת הגן </label>
-        <input  [(ngModel)]="_BL._Kindergarten.location.address" type="text" placeholder="כתובת">
-      </div>
-      <div class="field">
-        <label>עיר</label>
-        <input [(ngModel)]="_BL._Kindergarten.location.city" type="text" placeholder="עיר">
-      </div>
+<div class="ui   container equal width form KindergartenForm">
+  <div class="fields">
+    <div class="field">
+      <label>שם הגן </label>
+      <input [(ngModel)]="_BL._Kindergarten.name" type="text" placeholder="שם הגן" name="name" >
     </div>
-
-    <div class="fields">
-      <div class="field">
-        <label>טלפון נייד</label>
-        <input [(ngModel)]="_BL._Kindergarten.cellPhone" type="text" placeholder="טלפון נייד ">
-      </div>
-      <div class="field">
-        <label> טלפון נייח</label>
-        <input [(ngModel)]="_BL._Kindergarten.phone" type="text" placeholder="טלפון נייח">
-      </div>
-      <div class="field">
-        <label> דואל אלקטרוני </label>
-        <input [(ngModel)]="_BL._Kindergarten.email" type="text" placeholder="דואל אלקטרוני">
-      </div>
-
-      <div class="field">
-        <label> פייסבוק</label>
-        <input [(ngModel)]="_BL._Kindergarten.facebook" type="text" placeholder=" פייסבוק">
-      </div>
-
+    <div class="field">
+      <label> כתובת הגן </label>
+      <input  [(ngModel)]="_BL._Kindergarten.location.address" type="text" placeholder="כתובת">
     </div>
-
-    <div   *ngFor="let e of _BL._Kindergarten.employee_list;let i=index">
-      <div class="ui EmployeeComponent ">
-        <my-employee [_Employee]="e"></my-employee>
-      </div>
-    </div>
-
-    <div class="ui Subject  container">
-      פרטים עובדים
-
-
-      <div class="ui divider"></div>
-
-      <div class="ui secondary segment ">
-        <div class="fields">
-          <div class="field">
-            <label>שם עובד</label>
-            <input [(ngModel)]="_EmployeeName" type="text" placeholder="שם עובד">
-          </div>
-          <div class="field">
-            <label>תפקיד</label>
-            <input [(ngModel)]="_EmployeePosition" type="text" placeholder="תפקיד מנהל, טבח ...">
-          </div>
-          <div class="field">
-            <label>טלפון</label>
-            <input [(ngModel)]="_EmployeePhone" type="text" placeholder="טלפון">
-          </div>
-
-        </div>
-
-        <div class="fields">
-          <div class="field">
-            <label>עיר</label>
-            <input [(ngModel)]="_EmployeeCity" type="text" placeholder="עיר">
-          </div>
-          <div class="field">
-            <label>כתובת</label>
-            <input [(ngModel)]="_EmployeeAddress" type="text" placeholder="כתובת">
-          </div>
-          <div class="field">
-            <label>דואר אלקטרוני</label>
-            <input [(ngModel)]="_EmployeeEmail" type="text" placeholder="דואר אלקטרוני">
-          </div>
-        </div>
-
-        <div class="fields">
-          <div class="field">
-            <label>ניסיון תעסוקתי - (תקציר קורות חיים)</label>
-            <textarea [(ngModel)]="_EmployeeExperience" rows="2"></textarea>
-          </div>
-
-        </div>
-
-
-        <div class="ui grid">
-          <div class="two wide column">
-            <div>
-              <label for="file" class="ui icon blue button">
-                <i class="file icon"></i>
-                תמונה
-              </label>
-              <input type="file" id="file" ng2FileSelect [uploader]="uploader"  style="display:none" accept="image/jpg,image/png,image/jpeg,image/gif" >
-            </div>
-
-
-
-          </div>
-          <div class="fourteen wide column">
-            <div class="progress" style="">
-              <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }">
-                <div *ngIf="uploader.progress" >
-                {{ uploader.progress}}%
-                </div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
-        <div class="fields">
-
-
-          <div class="field">
-            <div class="ui vertical animated  olive button left floated " tabindex="0" (click)="addEmployee()">
-              <div class="hidden content">הוסף</div>
-              <div class="visible content">
-                <i class="plus icon"></i>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
+    <div class="field">
+      <label>עיר</label>
+      <input [(ngModel)]="_BL._Kindergarten.location.city" type="text" placeholder="עיר">
     </div>
   </div>
+
+  <div class="fields">
+    <div class="field">
+      <label>טלפון נייד</label>
+      <input [(ngModel)]="_BL._Kindergarten.cellPhone" type="text" placeholder="טלפון נייד ">
+    </div>
+    <div class="field">
+      <label> טלפון נייח</label>
+      <input [(ngModel)]="_BL._Kindergarten.phone" type="text" placeholder="טלפון נייח">
+    </div>
+    <div class="field">
+      <label> דואל אלקטרוני </label>
+      <input [(ngModel)]="_BL._Kindergarten.email" type="text" placeholder="דואל אלקטרוני">
+    </div>
+
+    <div class="field">
+      <label> פייסבוק</label>
+      <input [(ngModel)]="_BL._Kindergarten.facebook" type="text" placeholder=" פייסבוק">
+    </div>
+  </div>
+
+  <div class="inline fields">
+    <div class="field">
+      <label>שעת פתיחה</label>
+      <input [(ngModel)]="_BL._Kindergarten.open_time.minutes" type="number" placeholder="mm">:
+      <input [(ngModel)]="_BL._Kindergarten.open_time.hour" type="number" placeholder="HH">
+
+    </div>
+    <div class="field">
+      <label>שעת סגירה</label>
+      <input [(ngModel)]="_BL._Kindergarten.close_time.minutes" type="number" placeholder="mm">:
+      <input [(ngModel)]="_BL._Kindergarten.close_time.hour" type="number" placeholder="HH">
+    </div>
+  </div>
+
+  <div   *ngFor="let e of _BL._Kindergarten.employee_list;let i=index">
+    <div class="ui EmployeeComponent ">
+      <my-employee [_Employee]="e"></my-employee>
+    </div>
+  </div>
+
+  <div class="ui Subject  container">
+    פרטים עובדים
+
+
+    <div class="ui divider"></div>
+
+    <div class="ui secondary segment ">
+      <div class="fields">
+        <div class="field">
+          <label>שם עובד</label>
+          <input [(ngModel)]="_EmployeeName" type="text" placeholder="שם עובד">
+        </div>
+        <div class="field">
+          <label>תפקיד</label>
+          <input [(ngModel)]="_EmployeePosition" type="text" placeholder="תפקיד מנהל, טבח ...">
+        </div>
+        <div class="field">
+          <label>טלפון</label>
+          <input [(ngModel)]="_EmployeePhone" type="text" placeholder="טלפון">
+        </div>
+
+      </div>
+
+      <div class="fields">
+        <div class="field">
+          <label>עיר</label>
+          <input [(ngModel)]="_EmployeeCity" type="text" placeholder="עיר">
+        </div>
+        <div class="field">
+          <label>כתובת</label>
+          <input [(ngModel)]="_EmployeeAddress" type="text" placeholder="כתובת">
+        </div>
+        <div class="field">
+          <label>דואר אלקטרוני</label>
+          <input [(ngModel)]="_EmployeeEmail" type="text" placeholder="דואר אלקטרוני">
+        </div>
+      </div>
+
+      <div class="fields">
+        <div class="field">
+          <label>ניסיון תעסוקתי - (תקציר קורות חיים)</label>
+          <textarea [(ngModel)]="_EmployeeExperience" rows="2"></textarea>
+        </div>
+
+      </div>
+
+
+      <div class="ui grid">
+        <div class="two wide column">
+          <div>
+            <label for="file" class="ui icon blue button">
+              <i class="file icon"></i>
+              תמונה
+            </label>
+            <input type="file" id="file" ng2FileSelect [uploader]="uploader"  style="display:none" accept="image/jpg,image/png,image/jpeg,image/gif" >
+          </div>
+
+
+
+        </div>
+        <div class="fourteen wide column">
+          <div class="progress" style="">
+            <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }">
+              <div *ngIf="uploader.progress" >
+              {{ uploader.progress}}%
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="fields">
+
+
+        <div class="field">
+          <div class="ui vertical animated  olive button left floated " tabindex="0" (click)="addEmployee()">
+            <div class="hidden content">הוסף</div>
+            <div class="visible content">
+              <i class="plus icon"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
 

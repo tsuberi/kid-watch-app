@@ -86,6 +86,17 @@ export class AuthData {
   global_client_id: string = '';
 };
 
+export class Time{
+  constructor(hour?:number, minutes?:number) {
+    if(hour !== undefined)
+      this.hour = hour;
+    if(minutes !== undefined)
+      this.minutes = minutes;
+  }
+
+  hour: number = 7;
+  minutes: number = 30;
+}
 
 export class Kindergarten {
 
@@ -107,6 +118,9 @@ export class Kindergarten {
   userUrlID: string = '';
   kindergarten_id: string = null;
   auth: AuthData = new AuthData();
+  open_time = new Time();
+  close_time = new Time(16,0);
+
 
   constructor() {
   }

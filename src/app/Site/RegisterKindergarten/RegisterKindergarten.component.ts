@@ -58,7 +58,6 @@ export class RegisterKindergartenComponent implements OnInit {
   _EmployeeImage = '';
   _EmployeeBirthday = '';
 
-
   constructor(private _BL:Bl, public http:Http, private auth:Auth) {
 
 
@@ -72,7 +71,6 @@ export class RegisterKindergartenComponent implements OnInit {
     };
   }
 
-
   public fileOverBase(e:any):void {
     this.hasBaseDropZoneOver = e;
   }
@@ -80,7 +78,6 @@ export class RegisterKindergartenComponent implements OnInit {
   public fileOverAnother(e:any):void {
     this.hasAnotherDropZoneOver = e;
   }
-
 
   upload()
   {
@@ -112,8 +109,6 @@ export class RegisterKindergartenComponent implements OnInit {
       );
   }
 
-
-
   handleError(err:any) {
     return Observable.throw(err);
   }
@@ -121,9 +116,6 @@ export class RegisterKindergartenComponent implements OnInit {
   extractData(data):Kindergarten {
     return data; // JSON.parse(data._body)[0];
   }
-
-
-
 
   addEmployee() {
 
@@ -160,7 +152,6 @@ export class RegisterKindergartenComponent implements OnInit {
     }
   }
 
-
   ngOnInit() {
     if (!this.auth.authenticated())
       this.auth.login()
@@ -190,5 +181,7 @@ export class RegisterKindergartenComponent implements OnInit {
   ngOnDestroy() {
   }
 
-
+  save(){
+    this._BL.SaveKindergarten().subscribe();
+  }
 }
