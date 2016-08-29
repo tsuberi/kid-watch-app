@@ -41,7 +41,7 @@
       <div *ngIf="_KindergartenList" class="field">
 
         <select #sel (change)="onChange(sel.value)">
-          <option value="{{Kindergarten.auth.email}}" *ngFor="let Kindergarten of _KindergartenList; let i = index" [selected]="i == 0">
+          <option  value="{{Kindergarten.auth.email}}" *ngFor="let Kindergarten of _KindergartenList; let i = index" [selected]="i == 0">
             <h2>
               {{Kindergarten.name}}
             </h2>

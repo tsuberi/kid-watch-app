@@ -106,7 +106,7 @@ class ckid_server(remote.Service):
 
             childObj = Child(id=child.child_id)
             childObj.name = child.name
-            childObj.image = str(len(obj.child_list))
+            childObj.image = child.image
             childObj.birthday = child.birthday
             childObj.gander = child.gander
             childObj.active_date = child.active_date
