@@ -46,7 +46,10 @@ class ckid_server(remote.Service):
                               ,'image'
                               ,'language'
                               ,'create_date'
-                              ,'userUrlID'
+                              ,'open_time'
+                              ,'close_time'
+                              ,'responsibles'                       
+
                               ,'kindergarten_id') ,path="Kindergarten_insert", name="Kindergarten_insert")
     def Kindergarten_insert(self, model):
 
@@ -88,6 +91,10 @@ class ckid_server(remote.Service):
           obj.language = model.language        
           obj.create_date = model.create_date
           obj.userUrlID = model.auth.email
+          obj.open_time = model.open_time
+          obj.close_time = model.close_time
+          obj.responsibles = model.responsibles
+          
           obj.put()
 
           
@@ -111,9 +118,7 @@ class ckid_server(remote.Service):
 
         return model
 
-    @Kindergarten.query_method(  query_fields=( 'userUrlID'
-                            
-                          
+    @Kindergarten.query_method(  query_fields=( 'userUrlID' 
                               ,'limit' ,'order' ,'pageToken') ,name='KindergartenList',path='KindergartenList')
     def KindergartenList(self,query):
         return query

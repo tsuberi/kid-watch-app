@@ -18,9 +18,9 @@ export class Phone {
 };
 
 export class Responsible {
-  _Name: string = '';
-  _Title: string = '';
-  _Phone: string = '';
+  name: string = '';
+  title: string = '';
+  phone: string = '';
 
   constructor() {}
 };
@@ -94,7 +94,7 @@ export class Time{
       this.minutes = minutes;
   }
 
-  hour: number = 7;
+  hour: number = 9;
   minutes: number = 30;
 }
 

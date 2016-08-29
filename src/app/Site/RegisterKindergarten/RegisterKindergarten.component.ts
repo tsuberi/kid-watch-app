@@ -35,6 +35,7 @@ declare var jQuery;
 })
 export class RegisterKindergartenComponent implements OnInit {
 
+
   public uploader:FileUploader = new FileUploader({url: 'http://ckid-ckid.appspot.com/_ah/upload/ag1kZXZ-Y2tpZC1ja2lkciILEhVfX0Jsb2JVcGxvYWRTZXNzaW9uX18YgICAgIDIxwoM'});
 
   public hasBaseDropZoneOver:boolean = false;
@@ -55,6 +56,9 @@ export class RegisterKindergartenComponent implements OnInit {
   _EmployeeBirthday = '';
 
   constructor(private _BL:Bl, public http:Http, private auth:Auth) {
+    debugger;
+
+    console.log(_BL);
 
 
     this.uploader.onCompleteItem  = (fileItem, response, status, headers) =>{
@@ -176,6 +180,12 @@ export class RegisterKindergartenComponent implements OnInit {
   }
 
   save(){
+    debugger;
+    this._BL._Kindergarten.open_time.minutes = 5;
+    this._BL._Kindergarten.open_time.hour = 5;
+
+    console.log(this._BL._Kindergarten );
+
     this._BL.SaveKindergarten().subscribe();
   }
 }

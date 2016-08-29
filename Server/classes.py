@@ -185,15 +185,25 @@ class Child(EndpointsModel):
     birthday = ndb.DateTimeProperty() 
     gander = ndb.StringProperty()
     active_date = ndb.DateTimeProperty()  
-    kindergarten_id = ndb.StringProperty()
+    kindergarten_id = ndb.StringProperty()    
     child_id = ndb.StringProperty(default=str(uuid.uuid4()))
 
+
+class Time(EndpointsModel):
+    hour = ndb.IntegerProperty()
+    minutes = ndb.IntegerProperty()
+
+class Responsible(EndpointsModel):
+    name = ndb.IntegerProperty()
+    title = ndb.IntegerProperty()
+    phone = ndb.IntegerProperty()
 
 
 class Kindergarten(EndpointsModel):
     name = ndb.StringProperty()
     location = ndb.StructuredProperty(Location,repeated=False)
     child_list = ndb.StructuredProperty(Child,repeated=True)
+    responsibles = ndb.StructuredProperty(Responsible,repeated=True)
     employee_list = ndb.StructuredProperty(Employee,repeated=True)
     email = ndb.StringProperty(default="my phone number ")
     phone = ndb.StringProperty(default="my phone number ")
@@ -208,6 +218,8 @@ class Kindergarten(EndpointsModel):
     active_date = ndb.DateTimeProperty()
     userUrlID = ndb.StringProperty()
     kindergarten_id = ndb.StringProperty()
+    open_time = ndb.StructuredProperty(Time,repeated=False)
+    close_time = ndb.StructuredProperty(Time,repeated=False)
 
     _message_fields_schema = (
                               'name' 
@@ -224,7 +236,11 @@ class Kindergarten(EndpointsModel):
                               ,'image'
                               ,'language'
                               ,'create_date'
-                              ,'userUrlID'
+                              ,'userUrlID'                              
                               ,'kindergarten_id'
+                              ,'open_time'
+                              ,'close_time'
+                              ,'responsibles'
+
                               )
 

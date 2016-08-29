@@ -10,18 +10,13 @@ declare var jQuery;
 @Injectable()
 export class Bl {
 
-  public _BaseUrl = 'https://ckid-ckid.appspot.com/_ah/api/ckid_server/v1/';
-  //public _UploadUrl = 'https://ckid-ckid.appspot.com/api/'
-  public _UploadUrl = '/api/';
 
-
+  _BaseUrl = 'https://ckid-ckid.appspot.com/_ah/api/ckid_server/v1/'
+  _UploadUrl = 'https://ckid-ckid.appspot.com/api/'
 
   _Kindergarten = new Kindergarten();
 
   constructor(public http: Http,private router : Router) {
-
-    console.log(this._BaseUrl);
-
     let LocalKindergarten = JSON.parse( localStorage.getItem('Kindergarten'));
     if ( LocalKindergarten ){
       this._Kindergarten = LocalKindergarten;
@@ -39,8 +34,7 @@ export class Bl {
     let url = 'KindergartenList?order=name';
 
     url =  this._BaseUrl + url;
-
-
+    
     return this.http.get(url)
       .map(this.GetAllKindergartenExtractData)
       .catch(this.GetAllKindergartenHandleError);
@@ -51,7 +45,6 @@ export class Bl {
 
     url =  this._BaseUrl + url;
 
-    console.log(url);
 
     this.http.get(url)
       .map(res => res.text())
@@ -75,10 +68,10 @@ export class Bl {
     let body = JSON.stringify(this._Kindergarten);
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
-    let url = 'Kindergarten_insert';
+    let url = 'Kindergarten_insert'
 
     url =  this._BaseUrl + url;
-
+    
     console.log(body);
     localStorage.setItem('Kindergarten',body);
 
@@ -149,7 +142,7 @@ export class Bl {
     this._Kindergarten.auth =  auth ;
 
     this.router.navigateByUrl('/site/RegisterChild');
-    this.GetKindergarten();
+    this.GetKindergarten();;
 
   }
 }
