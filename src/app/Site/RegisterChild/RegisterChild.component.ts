@@ -129,11 +129,7 @@ export class RegisterChildComponent implements OnInit {
   upload() {
 
     let url = 'uploadKey'
-
-    if ( this._BL._DebugMode ) {
-      url =  this._BL._UploadUrl + url;
-    }
-
+    url =  this._BL._UploadUrl + url;
     //this.http.get('https://ckid-ckid.appspot.com/api/uploadKey')
 
     this.http.get(url)

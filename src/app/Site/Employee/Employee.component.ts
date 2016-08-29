@@ -47,7 +47,7 @@ export class EmployeeComponent implements OnInit {
         animation: 'scale',
         duration: 1000,
         interval: 100
-      })
+      });
     // .transition('bounce', '2000ms')
 
   }
@@ -59,11 +59,8 @@ export class EmployeeComponent implements OnInit {
   constructor(private _BL: Bl) {
 
 
-    if ( _BL._DebugMode){
-      this._Url  = _BL._UploadUrl;
-     
-    }
-
+    this._Url  = _BL._UploadUrl;
+    
   }
 
 }

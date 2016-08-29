@@ -10,16 +10,19 @@ declare var jQuery;
 @Injectable()
 export class Bl {
 
-  _DebugMode : boolean  = true;
+  public _BaseUrl = 'https://ckid-ckid.appspot.com/_ah/api/ckid_server/v1/';
+  //public _UploadUrl = 'https://ckid-ckid.appspot.com/api/'
+  public _UploadUrl = '/api/';
 
 
-  _BaseUrl = 'https://ckid-ckid.appspot.com/_ah/api/ckid_server/v1/'
-  _UploadUrl = 'https://ckid-ckid.appspot.com/api/'
 
   _Kindergarten = new Kindergarten();
 
   constructor(public http: Http,private router : Router) {
-    let LocalKindergarten = Object.assign(new Kindergarten(),JSON.parse( localStorage.getItem('Kindergarten')));
+
+    console.log(this._BaseUrl);
+
+    let LocalKindergarten = JSON.parse( localStorage.getItem('Kindergarten'));
     if ( LocalKindergarten ){
       this._Kindergarten = LocalKindergarten;
     }
@@ -35,9 +38,8 @@ export class Bl {
   GetAllKindergarten (): Observable<Kindergarten[]> {
     let url = 'KindergartenList?order=name';
 
-    if ( this._DebugMode ) {
-      url =  this._BaseUrl + url;
-    }
+    url =  this._BaseUrl + url;
+
 
     return this.http.get(url)
       .map(this.GetAllKindergartenExtractData)
@@ -47,10 +49,9 @@ export class Bl {
   GetKindergarten() {
     let url = 'KindergartenList' + '?userUrlID=' + this._Kindergarten.auth.email;
 
-    if ( this._DebugMode ) {
-      url =  this._BaseUrl + url;
-    }
+    url =  this._BaseUrl + url;
 
+    console.log(url);
 
     this.http.get(url)
       .map(res => res.text())
@@ -74,11 +75,9 @@ export class Bl {
     let body = JSON.stringify(this._Kindergarten);
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
-    let url = 'Kindergarten_insert'
+    let url = 'Kindergarten_insert';
 
-    if ( this._DebugMode ) {
-      url =  this._BaseUrl + url;
-    }
+    url =  this._BaseUrl + url;
 
     console.log(body);
     localStorage.setItem('Kindergarten',body);
@@ -150,7 +149,7 @@ export class Bl {
     this._Kindergarten.auth =  auth ;
 
     this.router.navigateByUrl('/site/RegisterChild');
-    this.GetKindergarten();;
+    this.GetKindergarten();
 
   }
 }

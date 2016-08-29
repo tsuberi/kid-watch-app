@@ -1,8 +1,4 @@
-import {Component, OnInit, Input, NgZone, trigger,
-  state,
-  style,
-  transition,
-  animate, group} from '@angular/core';
+import {Component, OnInit, NgZone} from '@angular/core';
 import {Bl} from '../../bl';
 import {EmployeeComponent} from '../Employee';
 import {Http, Headers, RequestOptions} from "@angular/http";
@@ -84,9 +80,7 @@ export class RegisterKindergartenComponent implements OnInit {
     debugger;
     let url = 'uploadKey'
 
-    if ( this._BL._DebugMode ) {
-      url =  this._BL._UploadUrl + url;
-    }
+    url =  this._BL._UploadUrl + url;
 
     this.http.get(url)
       .map(res => res.text())

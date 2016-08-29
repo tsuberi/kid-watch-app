@@ -8,18 +8,14 @@ handlers:
 
 
 
+
 - url: /api.*
   script: Upload.application
 
 
+
 - url: /_ah/spi/.*
   script: main.api
-
-
-
-
-- url: /
-  static_dir: client
 
 
 - url: /
@@ -27,6 +23,9 @@ handlers:
   upload: client/index.html
 
 
+
+- url: /
+  static_dir: client
 
 
 
