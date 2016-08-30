@@ -15,8 +15,6 @@ declare var jQuery;
 })
 export class SiteComponent implements OnInit {
 
-  public _Picture = '';
-
   constructor(private _BL: Bl, private auth: Auth) {
   }
 

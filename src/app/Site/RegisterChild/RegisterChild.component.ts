@@ -50,7 +50,7 @@ export class RegisterChildComponent implements OnInit {
 
     };
 
-    this._Responsibles = this._BL._Kindergarten.responsibles;
+    this._Responsibles = this._BL._Client.responsible_list;
   }
 
   CreateMap() {
@@ -129,11 +129,7 @@ export class RegisterChildComponent implements OnInit {
   upload() {
 
     let url = 'uploadKey'
-
-    if ( this._BL._DebugMode ) {
-      url =  this._BL._UploadUrl + url;
-    }
-
+    url =  this._BL._UploadUrl + url;
     //this.http.get('https://ckid-ckid.appspot.com/api/uploadKey')
 
     this.http.get(url)

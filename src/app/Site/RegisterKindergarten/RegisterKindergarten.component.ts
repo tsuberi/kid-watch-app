@@ -1,8 +1,4 @@
-import {Component, OnInit, Input, NgZone, trigger,
-  state,
-  style,
-  transition,
-  animate, group} from '@angular/core';
+import {Component, OnInit, NgZone} from '@angular/core';
 import {Bl} from '../../bl';
 import {EmployeeComponent} from '../Employee';
 import {Http, Headers, RequestOptions} from "@angular/http";
@@ -39,6 +35,7 @@ declare var jQuery;
 })
 export class RegisterKindergartenComponent implements OnInit {
 
+
   public uploader:FileUploader = new FileUploader({url: 'http://ckid-ckid.appspot.com/_ah/upload/ag1kZXZ-Y2tpZC1ja2lkciILEhVfX0Jsb2JVcGxvYWRTZXNzaW9uX18YgICAgIDIxwoM'});
 
   public hasBaseDropZoneOver:boolean = false;
@@ -61,6 +58,9 @@ export class RegisterKindergartenComponent implements OnInit {
   constructor(private _BL:Bl, public http:Http, private auth:Auth) {
 
 
+    console.log(_BL);
+
+
     this.uploader.onCompleteItem  = (fileItem, response, status, headers) =>{
       console.info('onSuccessItem', fileItem, response, status, headers);
 
@@ -81,12 +81,9 @@ export class RegisterKindergartenComponent implements OnInit {
 
   upload()
   {
-    debugger;
     let url = 'uploadKey'
 
-    if ( this._BL._DebugMode ) {
-      url =  this._BL._UploadUrl + url;
-    }
+    url =  this._BL._UploadUrl + url;
 
     this.http.get(url)
       .map(res => res.text())
@@ -119,23 +116,24 @@ export class RegisterKindergartenComponent implements OnInit {
 
   addEmployee() {
 
-    debugger;
     if (!this.auth.authenticated()) {
       this.auth.login();
       return;
     }
 
+    debugger;
+
     this._NewEmp = new Employee();
+    this._NewEmp.location.country = 'Israel';
+    this._NewEmp.location.city = this._EmployeeCity;
+    this._NewEmp.location.address = this._EmployeeAddress;
     this._NewEmp.name = this._EmployeeName;
     this._NewEmp.position = this._EmployeePosition;
     this._NewEmp.cellPhone = this._EmployeePhone;
-    this._NewEmp.city = this._EmployeeCity;
-    //this._NewEmp.address = this._EmployeeAddress;
-    //this._NewEmp.email = this._EmployeeEmail;
-    this._NewEmp.experience = this._EmployeeExperience;
+    this._NewEmp.email = this._EmployeeEmail;
     this._NewEmp.image = this._EmployeeImage;
     this._NewEmp.birthDay = this._EmployeeBirthday;
-    this._NewEmp.email = this._EmployeeEmail;
+    this._NewEmp.experience = this._EmployeeExperience;
 
 
     if ( ! this._BL._Kindergarten.employee_list )
@@ -182,6 +180,12 @@ export class RegisterKindergartenComponent implements OnInit {
   }
 
   save(){
+
+    this._BL._Kindergarten.opening_minutes = 5;
+    this._BL._Kindergarten.opening_hour = 5;
+
+    console.log(this._BL._Kindergarten );
+
     this._BL.SaveKindergarten().subscribe();
   }
 }

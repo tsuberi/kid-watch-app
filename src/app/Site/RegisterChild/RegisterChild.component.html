@@ -41,7 +41,7 @@
       <div *ngIf="_KindergartenList" class="field">
 
         <select #sel (change)="onChange(sel.value)">
-          <option value="{{Kindergarten.auth.email}}" *ngFor="let Kindergarten of _KindergartenList; let i = index" [selected]="i == 0">
+          <option  value="{{Kindergarten.auth.email}}" *ngFor="let Kindergarten of _KindergartenList; let i = index" [selected]="i == 0">
             <h2>
               {{Kindergarten.name}}
             </h2>
@@ -185,7 +185,7 @@
   <div class="ui container">
     <div class="ui clearing segment">
       <h3 class="ui right floated header">
-        פרטי אחריאיים
+        פרטי אחראים
       </h3>
       <h3 class="ui left floated header">
         <button class="ui green button" (click)="saveResponsibles()">שמור</button>
@@ -196,7 +196,7 @@
         <div class="inline fields">
           <div class="field">
             <label>שם</label>
-            <input type="text" placeholder="דוגמא: חיים" [(ngModel)]="_FreshResponsible._Name">
+            <input type="text" placeholder="דוגמא: חיים" [(ngModel)]="_FreshResponsible.name">
           </div>
           <div class="field">
             <label>יחס לילד</label>
@@ -220,7 +220,7 @@
           <div class="fields">
             <div class="field">
               <label>שם</label>
-              {{_Responsible._Name}}
+              {{_Responsible.name}}
             </div>
             <div class="field">
               <label>יחס לילד</label>

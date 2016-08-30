@@ -6,29 +6,21 @@ threadsafe: true
 
 handlers:
 
-
-
 - url: /api.*
   script: Upload.application
 
+- url: /task.*
+  script: Task.application
 
 - url: /_ah/spi/.*
-  script: main.api
-
-
-
-
-- url: /
-  static_dir: client
-
+  script: api.api
 
 - url: /
   static_files: client/index.html
   upload: client/index.html
 
-
-
-
+- url: /
+  static_dir: client
 
 libraries:
 - name: endpoints

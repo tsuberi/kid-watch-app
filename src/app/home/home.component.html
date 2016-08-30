@@ -10,7 +10,7 @@
       <br>
 
       <h1 class="ui huge icon inverted header">
-        <i class="settings icon"></i>
+
 
         <div class="content">
           WatchKid
@@ -31,15 +31,16 @@
       <br>
       <br>
       <div class="ui right floated">
-        <a href="" class="ui facebook item button">
+
+        <a href="" ceiboShare  [facebook]="{u: repoUrl}" class="ui facebook item button">
           <i class="facebook icon"></i>
           Facebook
         </a>
         <a href="" class="ui twitter item button">
-          <i class="twitter icon"></i>
+          <i ceiboShare  [twitter]="{url:repoUrl, text:'Checkout this awesome ng2 social share directive', hashtags:'angular2, social, ceiboIT'}" class="twitter icon"></i>
           Twitter
         </a>
-        <a href="" class="ui google plus item button">
+        <a href="" ceiboShare  [googlePlus]="{url:repoUrl}" class="ui google plus item button">
           <i class="google plus icon"></i>
           Google Plus
         </a>
@@ -74,15 +75,22 @@
           <h2 class="ui header">
             <i class="plug icon"></i>
             <div class="content">
-              להקנות ראש שקט להורים
+              לומד זמני הגעה / יציאה מהגן
             </div>
           </h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci asperiores aspernatur, autem delectus doloribus eos exercitationem facere fugiat illum ipsum, iusto laborum minus nisi nulla odit pariatur quia veniam.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam architecto commodi debitis exercitationem hic maiores, pariatur ut. Aperiam autem et magni maxime non qui rem, repellat tempora? Dolor, laboriosam, saepe.
-          </p>
+
+
+            <ul>
+          <li>
+            	לומד משבוע לשבוע את זמני הגעתו של הילד לגן וזמני עזיבתו של הילד מהגן עפ"י חישוב ממוצע שבועי
+          </li>
+          <li>
+            במידה והילד לא הגיע 20 דקות לאחר הזמן המצופה תשלח הודעת SMS להורים ולמי שמוגדר באנשי הקשר של אותו ילד.
+          </li>
+
+        </ul>
+
+
         </div>
         <div class="ui one wide column"></div>
         <div class="ui four wide column">
@@ -92,27 +100,36 @@
               ליצור תחושה של ביטחון
             </div>
           </h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci asperiores aspernatur, autem delectus doloribus eos exercitationem facere fugiat illum ipsum, iusto laborum minus nisi nulla odit pariatur quia veniam.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam architecto commodi debitis exercitationem hic maiores, pariatur ut. Aperiam autem et magni maxime non qui rem, repellat tempora? Dolor, laboriosam, saepe.
-          </p>
+          <ul>
+            <li>
+              לתת הרגשה להורים שהם עם "יד על הדופק"
+            </li>
+            <li>
+              	הטאבלט בגן משמש לגננת כ"שומר" ובכך היא יכולה להתפנות לעיסוקיה עם ילדי הגן.
+            </li>
+
+          </ul>
+
         </div>
         <div class="ui one wide column"></div>
         <div class="ui four wide column">
           <h2 class="ui header">
             <i class="plug icon"></i>
             <div class="content">
-              להוריד עומס מהגננות
+              אתר לכל גן
             </div>
           </h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci asperiores aspernatur, autem delectus doloribus eos exercitationem facere fugiat illum ipsum, iusto laborum minus nisi nulla odit pariatur quia veniam.
+
+              Watch-kid
+
+              מאפשרת לגננות להירשם חינם לשירות וליהנות מעמוד אינטרנט אישי לכל גן.
+
           </p>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam architecto commodi debitis exercitationem hic maiores, pariatur ut. Aperiam autem et magni maxime non qui rem, repellat tempora? Dolor, laboriosam, saepe.
+            עמוד הגן כולל: לוח מודעות, מפת הגעה לגן, תמונות מפעילויות הגן בחגים ובימי הולדת, ועוד הפתעות רבות
           </p>
+
         </div>
         <div class="ui one wide column"></div>
       </div>
@@ -185,14 +202,14 @@
               <label>שם</label>
               <div class="two fields">
                 <div class="field">
-                  <input type="text" name="shipping[first-name]" placeholder="First Name">
+                  <input type="text" name="shipping[first-name]" placeholder="שם פרטי">
                 </div>
                 <div class="field">
-                  <input type="text" name="shipping[last-name]" placeholder="Last Name">
+                  <input type="text" name="shipping[last-name]" placeholder="שם משפחה">
                 </div>
               </div>
             </div>
-            <div class="field">
+           <!-- <div class="field">
               <label>ארץ</label>
               <div class="ui fluid search selection dropdown">
                 <input type="hidden" name="country">
@@ -443,12 +460,12 @@
                   <div class="item" data-value="zw"><i class="zw flag"></i>Zimbabwe</div>
                 </div>
               </div>
-            </div>
+            </div>-->
             <div class="field">
               <label>הודעה</label>
-              <textarea placeholder="message"></textarea>
+              <textarea placeholder="הודעה"></textarea>
             </div>
-            <div class="ui right floated button" tabindex="0">Send</div>
+            <div class="ui right floated button" tabindex="0">שלח</div>
           </form>
         </div>
       </div>
