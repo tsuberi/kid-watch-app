@@ -35,7 +35,6 @@ export class Employee {
   cell_phone : string = '';
   email : string = '';
   image : string = '';
-  birth_day : string = '';
   experience : string = '';
   constructor() {
   }
@@ -70,12 +69,13 @@ export class Kindergarten {
 
 
 export class Child {
-  kindergarten_key: Kindergarten = new Kindergarten();
+  kindergarten_id: string = '';
   name : string = '';
   picture : string = '';
   birth_day : string = '';
   gender : string = '';
-  isArrived : boolean = false;
+  in_date : string = '';
+  out_date : string = '';
   constructor() {
   }
 }
@@ -93,7 +93,7 @@ export class Responsible {
 export class Client {
   auth: AuthData = new AuthData();
   email : string = '';
-  child_list: Child = new Child();
+  child_list: Child[] = [];
   responsible_list: Responsible[] = [];
   password : string = '';
 

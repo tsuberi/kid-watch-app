@@ -39,15 +39,12 @@ export class RegisterChildComponent implements OnInit {
       console.info('onSuccessItem', fileItem, response, status, headers);
 
 
-      this._NewChild.image = fileItem._xhr.response;
-      this._BL._Kindergarten.child_list.push(this._NewChild);
-      this._BL.SaveKindergarten().subscribe();
+      this._NewChild.picture = fileItem._xhr.response;
+      this._BL._Client.child_list.push(this._NewChild);
+      this._BL.SaveClient().subscribe();
 
       this.uploader.clearQueue();
       this._Loaded = false;
-
-
-
     };
 
     this._Responsibles = this._BL._Client.responsible_list;
@@ -71,27 +68,27 @@ export class RegisterChildComponent implements OnInit {
   }
 
   addChild() {
-    this._NewChild = new Child()
+    this._NewChild = new Child();
     this._NewChild.name = this._Name;
-    this._NewChild.image = this._Image;
-    this._NewChild.birthDay = new Date(this._SelectedBirthDay).toISOString().replace('Z', '0').replace('+', '.');
-    this._NewChild.gander = this._Gander;
+    this._NewChild.picture = this._Image;
+    this._NewChild.birth_day = new Date(this._SelectedBirthDay).toISOString().replace('Z', '0').replace('+', '.');
+    this._NewChild.gender = this._Gander;
     this._NewChild.kindergarten_id = this._SelectedKindergartenList.auth.email;
 
 
-    console.log(this._BL._Kindergarten.child_list);
+    console.log(this._BL._Client.child_list);
 
     event.preventDefault();
-    if (!this._BL._Kindergarten.child_list) {
-      this._BL._Kindergarten.child_list = [];
+    if (!this._BL._Client.child_list) {
+      this._BL._Client.child_list = [];
     }
 
     if (jQuery('#file').val() != '') {
       this.upload();
     }
     else {
-      this._BL._Kindergarten.employee_list.push(this._NewChild);
-      this._BL.SaveKindergarten().subscribe();
+      this._BL._Client.child_list.push(this._NewChild);
+      this._BL.SaveClient().subscribe();
     }
 
   }
@@ -162,8 +159,10 @@ export class RegisterChildComponent implements OnInit {
     this._Responsibles.splice(this._Responsibles.indexOf(item),1);
   }
 
+
+
   saveResponsibles(){
-    this._BL.SaveKindergarten().subscribe()
+    this._BL.SaveClient().subscribe()
   }
 
   handleError(err: any) {

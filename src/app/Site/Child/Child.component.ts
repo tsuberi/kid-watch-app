@@ -16,14 +16,14 @@ export class ChildComponent implements OnInit  {
 
 
   delete() {
-    let index = this._BL._Kindergarten.child_list.indexOf(this._Child);
+    let index = this._BL._Client.child_list.indexOf(this._Child);
 
     if (index !== -1) {
       console.log('deleteing item');
-      console.log(this._BL._Kindergarten.child_list);
-      this._BL._Kindergarten.child_list.splice(index, 1);
-      console.log(this._BL._Kindergarten.child_list);
-      this._BL.SaveKindergarten().subscribe();
+      console.log(this._BL._Client.child_list);
+      this._BL._Client.child_list.splice(index, 1);
+      console.log(this._BL._Client.child_list);
+      this._BL.SaveClient().subscribe();
     }
   }
 
@@ -57,7 +57,10 @@ export class ChildComponent implements OnInit  {
   constructor(private _BL: Bl) {
 
     this._Url  = _BL._UploadUrl;
-   
+
   }
 
+  getDate(){
+    return new Date(this._Child.birth_day)
+  }
 }

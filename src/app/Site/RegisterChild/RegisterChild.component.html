@@ -89,7 +89,7 @@
   </div>
   <div class="ui   container">
     <div  class="ui   container equal width form">
-      <div  *ngFor="let e of _BL._Kindergarten.child_list;let i=index">
+      <div  *ngFor="let e of _BL._Client.child_list;let i=index">
         <div class="ui ChildComponent ">
           <my-child [_Child]="e"></my-child>
         </div>
@@ -200,11 +200,11 @@
           </div>
           <div class="field">
             <label>יחס לילד</label>
-            <input type="text" placeholder="דוגמא: אבא, סבא ,אמא, דוד ..."  [(ngModel)]="_FreshResponsible._Title">
+            <input type="text" placeholder="דוגמא: אבא, סבא ,אמא, דוד ..."  [(ngModel)]="_FreshResponsible.relation">
           </div>
           <div class="field">
             <label>מספר טלפון</label>
-            <input type="text" placeholder="דוגמא: 058-1230123"  [(ngModel)]="_FreshResponsible._Phone">
+            <input type="text" placeholder="דוגמא: 058-1230123"  [(ngModel)]="_FreshResponsible.phone">
           </div>
           <button class="ui left floated green button" type="submit" (click)="addResponsible()">הוסף</button>
         </div>
@@ -224,11 +224,11 @@
             </div>
             <div class="field">
               <label>יחס לילד</label>
-              {{_Responsible._Title}}
+              {{_Responsible.relation}}
             </div>
             <div class="field">
               <label>מספר טלפון</label>
-              {{_Responsible._Phone}}
+              {{_Responsible.phone}}
             </div>
           </div>
         </div>

@@ -132,7 +132,6 @@ export class RegisterKindergartenComponent implements OnInit {
     this._NewEmp.cellPhone = this._EmployeePhone;
     this._NewEmp.email = this._EmployeeEmail;
     this._NewEmp.image = this._EmployeeImage;
-    this._NewEmp.birthDay = this._EmployeeBirthday;
     this._NewEmp.experience = this._EmployeeExperience;
 
 
