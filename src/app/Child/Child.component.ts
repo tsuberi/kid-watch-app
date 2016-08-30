@@ -4,9 +4,6 @@ import {Bl} from "../bl/bl";
 
 declare let jQuery;
 
-@Directive({
-  selector: '[myHighlight]'
-})
 
 @Component({
   selector: 'my-child',
@@ -18,19 +15,9 @@ export class ChildComponent implements OnInit {
   @Input() _Child:Child;
   _Url:string = '';
   @ViewChild('ChildItem') _ChildItem;
+  _Arrived : boolean = true;
 
-
-  delete() {
-    let index = this._BL._Kindergarten.child_list.indexOf(this._Child);
-
-    if (index !== -1) {
-      console.log('deleteing item');
-      console.log(this._BL._Kindergarten.child_list);
-      this._BL._Kindergarten.child_list.splice(index, 1);
-      console.log(this._BL._Kindergarten.child_list);
-      this._BL.SaveKindergarten().subscribe();
-    }
-  }
+  password: string;
 
   @HostListener('mouseenter') onMouseEnter() {
 
@@ -55,6 +42,7 @@ export class ChildComponent implements OnInit {
 
   }
 
+
   ngOnInit() {
     console.log('Hello ChildComponent');
 
@@ -73,6 +61,14 @@ export class ChildComponent implements OnInit {
         interval: 100
       });
 
+
+    var $toggle  = jQuery('.ui.toggle.button');
+    $toggle
+      .state({
+
+      })
+    ;
+
     if (this._Child)
       this._Url = this._BL._UploadUrl + "view_photo/" + this._Child.picture;
     // .transition('bounce', '2000ms')
@@ -89,6 +85,23 @@ export class ChildComponent implements OnInit {
     if ( this._Child )
       this._Url  = _BL._UploadUrl + "view_photo/" + this._Child.picture;
 
+
   }
 
+  isArrived(){
+    return !!this._Child.in_date
+  }
+
+  isExited(){
+    return !!this._Child.out_date
+  }
+
+  onClick(){
+    if(this.isArrived())
+      this._Child.out_date = new Date().toISOString().replace('Z', '0').replace('+', '.');
+    else
+      this._Child.in_date = new Date().toISOString().replace('Z', '0').replace('+', '.');
+
+    this._BL.SaveKindergarten().subscribe();
+  }
 }

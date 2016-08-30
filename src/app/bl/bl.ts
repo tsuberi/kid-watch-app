@@ -21,9 +21,14 @@ export class Bl {
 
 
   constructor(public http: Http,private router : Router) {
-    let LocalKindergarten = JSON.parse( localStorage.getItem('Kindergarten'));
+    let LocalKindergarten = Object.assign(new Kindergarten(), JSON.parse( localStorage.getItem('Kindergarten')));
     if ( LocalKindergarten ){
       this._Kindergarten = LocalKindergarten;
+    }
+
+    let LocalClient = Object.assign(new Client(), JSON.parse( localStorage.getItem('Client')));
+    if ( LocalClient ){
+      this._Client = LocalClient;
     }
   }
 
@@ -74,13 +79,10 @@ export class Bl {
     let options = new RequestOptions({headers: headers});
     let url = 'kindergarten'
 
-    debugger;
     url =  this._BaseUrl + url;
 
-
-
     console.log(body);
-    localStorage.setItem('kindergarten',body);
+    localStorage.setItem('Kindergarten',body);
 
     return this.http.post(url, body, options)
       .map(this.SaveKindergartenExtractData)
@@ -98,6 +100,36 @@ export class Bl {
     return data;
   }
 
+
+  SaveClient(): Observable<Client> {
+    this._Client.auth = this._Kindergarten.auth;
+    let body = JSON.stringify(this._Client);
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
+    let url = 'child';
+
+    url =  this._BaseUrl + url;
+
+    console.log(body);
+    localStorage.setItem('Client',body);
+
+    return this.http.post(url, body, options)
+      .map(this.SaveClientExtractData)
+      .catch(this.SaveClientHandleError);
+
+  }
+
+
+  SaveClientHandleError(err: any) {
+    return Observable.throw(err);
+  }
+
+  SaveClientExtractData(data): Client {
+    return data;
+  }
+
+
+
   GetAllKindergartenHandleError(err: any) {
     return Observable.throw(err);
   }
@@ -111,11 +143,10 @@ export class Bl {
 
   Logout()
   {
-    debugger;
-
     localStorage.removeItem('id_token');
     localStorage.removeItem('profile');
     localStorage.removeItem('Kindergarten');
+    localStorage.removeItem('Client');
 
     this._Kindergarten = new Kindergarten();
   }
@@ -148,6 +179,7 @@ export class Bl {
     }
 
     this._Kindergarten.auth =  auth ;
+    this._Client.auth =  auth ;
 
     this.router.navigateByUrl('/site/RegisterKindergarten');
     this.GetKindergarten();;

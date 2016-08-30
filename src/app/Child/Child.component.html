@@ -57,53 +57,15 @@
       <img src="/images/avatar/large/chris.jpg">
     </div>
     <div class="description">
-      <div class="ui header">We've auto-chosen a profile image for you.</div>
-      <p>We've grabbed the following image from the <a href="https://www.gravatar.com" target="_blank">gravatar</a> image associated with your registered e-mail address.</p>
-      <p>Is it okay to use this photo?</p>
+      אנא הכנס סיסמא:
+      <input type="text" [(ngModel)]="password" placeholder="סיסמא">
     </div>
   </div>
   <div class="actions">
-    <div class="ui black deny button">
-      Nope
-    </div>
-    <div class="ui positive right labeled icon button">
-      Yep, that's me
+    <div class="ui positive right labeled icon button" (click)="onClick()" [ngClass]=" { positive: !isArrived(), disabled: !password}  " >
+      {{isArrived() ? "הגעתי" : "יצאתי"}}
+
       <i class="checkmark icon"></i>
     </div>
   </div>
 </div>
-
-<!--
-
-<div class="ui red segment ChildComponent ">
-    <div class="ui divided items">
-      <div class="item">
-        <div class=" ui medium image">
-          <img class="ui mini image spaced" src="{{_Url}}view_photo/{{_Child.image}}">
-        </div>
-        <div class="content paddingRight50">
-          <button (click)="delete()" class="ui icon red button  left floated">
-            <i class="delete icon"></i>
-
-          </button>
-
-          <div class="meta">
-
-            <span class="header"><h2>{{_Child._Name}}</h2> </span>
-          </div>
-
-
-          <div class="meta">
-            <span class="cinema">תאריך לידה :</span>
-            <span class="cinema"><b>{{_Child._BirthDay}}</b> </span>
-          </div>
-          <div class="meta">
-            <span class="cinema">מין : </span>
-            <span class="cinema">{{_Child._Gander}}</span>
-          </div>
-
-        </div>
-      </div>
-    </div>
-</div>
--->

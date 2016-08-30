@@ -4,7 +4,7 @@
     <div class="ui divided items">
       <div class="item">
         <div class=" ui medium image">
-          <img class="ui mini image spaced" src="{{_Url}}view_photo/{{_Child.image}}">
+          <img class="ui mini image spaced" src="{{_Url}}view_photo/{{_Child.picture}}">
         </div>
         <div class="content paddingRight50">
           <button (click)="delete()" class="ui icon red button  left floated">
@@ -20,11 +20,11 @@
 
           <div class="meta">
             <span class="cinema">תאריך לידה :</span>
-            <span class="cinema"><b>{{_Child.birthDay}}</b> </span>
+            <span class="cinema"><b>{{getDate() | date:'dd/MM/yyyy'}}</b> </span>
           </div>
           <div class="meta">
             <span class="cinema">מין : </span>
-            <span class="cinema">{{_Child.gander}}</span>
+            <span class="cinema">{{_Child.gender}}</span>
           </div>
 
         </div>
