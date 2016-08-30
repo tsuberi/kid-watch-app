@@ -6,8 +6,8 @@ declare let jQuery;
 
 
 @Component({
-  selector: 'my-child',
-  templateUrl: './Child.component.html',
+  selector: '[child]',
+  templateUrl: './Child.component-new.html',
   styleUrls: ['./Child.component.css']
 })
 export class ChildComponent implements OnInit {

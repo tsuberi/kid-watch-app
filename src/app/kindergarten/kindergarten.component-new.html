@@ -1,0 +1,32 @@
+<div class="ui top fixed inverted green menu">
+  <h2 class="header item">
+    הגן של משה
+  </h2>
+  <div class="item">
+    <my-clock></my-clock>
+  </div>
+  <h4 class="header item">
+    כרגע בגן: 6 ילדים מתוך 20
+  </h4>
+  <div class="left menu">
+    <h4 class="header item">
+      שעת הכניסה: 7:30
+    </h4>
+    <h4 class="header item">
+      שעת היציאה: 16:30
+    </h4>
+  </div>
+</div>
+
+<div class="ui container">
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <div class="ui cards">
+    <div style="margin-left : auto; margin-right:auto" class="ui card" child [_Child]="c" *ngFor="let c of mockChilds">
+    </div>
+  </div>
+</div>
