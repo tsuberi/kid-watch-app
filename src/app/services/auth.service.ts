@@ -14,24 +14,7 @@ export class Auth {
 
 
   constructor(private _BL: Bl) {
-
-   /* this.userProfile = JSON.parse(localStorage.getItem('profile'));
-    this._BL = bl;
-    this.lock.on('authenticated', (authResult) => {
-      localStorage.setItem('id_token', authResult.idToken);
-      this.lock.getProfile(authResult.idToken, (error, profile) => {
-
-        if (error) {
-          return;
-        }
-
-        localStorage.setItem('profile', JSON.stringify(profile));
-        this.userProfile = profile;
-      });
-    });*/
   }
-
-
 
   public login() {
 

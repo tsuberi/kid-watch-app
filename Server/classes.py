@@ -1,10 +1,5 @@
 __author__ = 'e'
 
-
-
-
-
-
 from google.appengine.ext import ndb
 from endpoints_proto_datastore.ndb import EndpointsModel
 from endpoints_proto_datastore.ndb import EndpointsDateTimeProperty
@@ -176,16 +171,16 @@ class Phone(EndpointsModel):
 class Responsible(EndpointsModel):
     name = ndb.StringProperty()
     title = ndb.StringProperty()
-    phone_list = ndb.StructuredProperty(Phone,repeated=False)
-
-
+    phone = ndb.StringProperty()
+    
 class Child(EndpointsModel):
     name = ndb.StringProperty()
     image = ndb.StringProperty()
     birthday = ndb.DateTimeProperty() 
-    gander = ndb.StringProperty()
+    gender = ndb.StringProperty()
     active_date = ndb.DateTimeProperty()  
     kindergarten_id = ndb.StringProperty()    
+    send_sms = ndb.BooleanProperty(default=False)
     child_id = ndb.StringProperty(default=str(uuid.uuid4()))
 
 
@@ -199,12 +194,11 @@ class Responsible(EndpointsModel):
     phone = ndb.IntegerProperty()
 
 
-class Kindergarten(EndpointsModel):
+
+
+class BaseModel:
     name = ndb.StringProperty()
-    location = ndb.StructuredProperty(Location,repeated=False)
-    child_list = ndb.StructuredProperty(Child,repeated=True)
-    responsibles = ndb.StructuredProperty(Responsible,repeated=True)
-    employee_list = ndb.StructuredProperty(Employee,repeated=True)
+    location = ndb.StructuredProperty(Location,repeated=False)    
     email = ndb.StringProperty(default="my phone number ")
     phone = ndb.StringProperty(default="my phone number ")
     cellPhone = ndb.StringProperty(default="my phone number ")    
@@ -217,14 +211,48 @@ class Kindergarten(EndpointsModel):
     create_date = ndb.DateTimeProperty(auto_now_add=True) 
     active_date = ndb.DateTimeProperty()
     userUrlID = ndb.StringProperty()
-    kindergarten_id = ndb.StringProperty()
+    
+
+
+class Parent(BaseModel,EndpointsModel):
+    responsibles = ndb.StructuredProperty(Responsible,repeated=True)
+    child_list = ndb.StructuredProperty(Child,repeated=True)
+    _message_fields_schema = (
+                              'name' 
+                              ,'location'
+                              ,'child_list'  
+                              ,'email'                     
+                              ,'phone'
+                              ,'cellPhone'
+                              ,'contact_name' 
+                              ,'facebook'
+                              ,'auth'
+                              ,'description'
+                              ,'image'
+                              ,'language'
+                              ,'create_date'
+                              ,'userUrlID'                               
+                              ,'responsibles')
+
+
+
+
+
+class Kindergarten(BaseModel,EndpointsModel):
+    employee_list = ndb.StructuredProperty(Employee,repeated=True)
+    parent_list  = ndb.StructuredProperty(Parent,repeated=True)
     open_time = ndb.StructuredProperty(Time,repeated=False)
-    close_time = ndb.StructuredProperty(Time,repeated=False)
+    close_time = ndb.StructuredProperty(Time,repeated=False) 
+    working_on_friday = ndb.BooleanProperty(default=False)
+    working_on_saturday = ndb.BooleanProperty(default=False)
+    working_on_sunday = ndb.BooleanProperty(default=False)
+    cron_flag = ndb.BooleanProperty(default=False)
+  
 
     _message_fields_schema = (
                               'name' 
                               ,'location'
-                              ,'child_list'                         
+                              ,'parent_list'                         
                               ,'employee_list'         
                               ,'email'                     
                               ,'phone'
@@ -236,11 +264,59 @@ class Kindergarten(EndpointsModel):
                               ,'image'
                               ,'language'
                               ,'create_date'
-                              ,'userUrlID'                              
-                              ,'kindergarten_id'
+                              ,'userUrlID'   
                               ,'open_time'
                               ,'close_time'
-                              ,'responsibles'
+                              ,'working_on_friday'
+                              ,'working_on_saturday'
+                              ,'working_on_sunday'
 
                               )
+
+
+
+# class Kindergarten(EndpointsModel):
+#     name = ndb.StringProperty()
+#     location = ndb.StructuredProperty(Location,repeated=False)
+#     child_list = ndb.StructuredProperty(Child,repeated=True)
+#     responsibles = ndb.StructuredProperty(Responsible,repeated=True)
+#     employee_list = ndb.StructuredProperty(Employee,repeated=True)
+#     email = ndb.StringProperty(default="my phone number ")
+#     phone = ndb.StringProperty(default="my phone number ")
+#     cellPhone = ndb.StringProperty(default="my phone number ")    
+#     contact_name = ndb.StringProperty(default="my full name")
+#     facebook = ndb.StringProperty(default="my full name")
+#     auth = ndb.StructuredProperty(_AuthData,repeated=False)  
+#     description = ndb.StringProperty(default="my job Description like  'Web Developer Expert'")     
+#     image = ndb.StringProperty(default='https://prb-resume.com/api/view_photo/AMIfv96_jNxRDFg2gU7bUfNxchYhXtfBJRaFasSMqQjHVlZhUux57VActcIsjxZYvOuIEsGnjX6GPW1qaHPlwlel-iP1HHe4PfVXhgFiuY32Lih4bsDuvvJssnDIiPsyHEYiAtrWRC7dTr3iqK_EtunZKwNYdf4X6Q')        
+#     language = ndb.StringProperty()
+#     create_date = ndb.DateTimeProperty(auto_now_add=True) 
+#     active_date = ndb.DateTimeProperty()
+#     userUrlID = ndb.StringProperty()
+#     kindergarten_id = ndb.StringProperty()
+#     open_time = ndb.StructuredProperty(Time,repeated=False)
+#     close_time = ndb.StructuredProperty(Time,repeated=False)
+
+#     _message_fields_schema = (
+#                               'name' 
+#                               ,'location'
+#                               ,'child_list'                         
+#                               ,'employee_list'         
+#                               ,'email'                     
+#                               ,'phone'
+#                               ,'cellPhone'
+#                               ,'contact_name' 
+#                               ,'facebook'
+#                               ,'auth'
+#                               ,'description'
+#                               ,'image'
+#                               ,'language'
+#                               ,'create_date'
+#                               ,'userUrlID'                              
+#                               ,'kindergarten_id'
+#                               ,'open_time'
+#                               ,'close_time'
+#                               ,'responsibles'
+
+#                               )
 

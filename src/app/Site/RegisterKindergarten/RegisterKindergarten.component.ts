@@ -56,7 +56,7 @@ export class RegisterKindergartenComponent implements OnInit {
   _EmployeeBirthday = '';
 
   constructor(private _BL:Bl, public http:Http, private auth:Auth) {
-    debugger;
+
 
     console.log(_BL);
 
@@ -81,7 +81,6 @@ export class RegisterKindergartenComponent implements OnInit {
 
   upload()
   {
-    debugger;
     let url = 'uploadKey'
 
     url =  this._BL._UploadUrl + url;
@@ -117,23 +116,24 @@ export class RegisterKindergartenComponent implements OnInit {
 
   addEmployee() {
 
-    debugger;
     if (!this.auth.authenticated()) {
       this.auth.login();
       return;
     }
 
+    debugger;
+
     this._NewEmp = new Employee();
+    this._NewEmp.location.country = 'Israel';
+    this._NewEmp.location.city = this._EmployeeCity;
+    this._NewEmp.location.address = this._EmployeeAddress;
     this._NewEmp.name = this._EmployeeName;
     this._NewEmp.position = this._EmployeePosition;
     this._NewEmp.cellPhone = this._EmployeePhone;
-    this._NewEmp.city = this._EmployeeCity;
-    //this._NewEmp.address = this._EmployeeAddress;
-    //this._NewEmp.email = this._EmployeeEmail;
-    this._NewEmp.experience = this._EmployeeExperience;
+    this._NewEmp.email = this._EmployeeEmail;
     this._NewEmp.image = this._EmployeeImage;
     this._NewEmp.birthDay = this._EmployeeBirthday;
-    this._NewEmp.email = this._EmployeeEmail;
+    this._NewEmp.experience = this._EmployeeExperience;
 
 
     if ( ! this._BL._Kindergarten.employee_list )
@@ -180,9 +180,9 @@ export class RegisterKindergartenComponent implements OnInit {
   }
 
   save(){
-    debugger;
-    this._BL._Kindergarten.open_time.minutes = 5;
-    this._BL._Kindergarten.open_time.hour = 5;
+
+    this._BL._Kindergarten.opening_minutes = 5;
+    this._BL._Kindergarten.opening_hour = 5;
 
     console.log(this._BL._Kindergarten );
 

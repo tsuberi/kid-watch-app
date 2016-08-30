@@ -50,7 +50,7 @@ export class RegisterChildComponent implements OnInit {
 
     };
 
-    this._Responsibles = this._BL._Kindergarten.responsibles;
+    this._Responsibles = this._BL._Client.responsible_list;
   }
 
   CreateMap() {

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Rx';
 import {Http, Headers, RequestOptions} from '@angular/http';
-import {Kindergarten, AuthData} from './models';
+import {Kindergarten, AuthData , Client} from './models';
 import {Router} from "@angular/router";
 
 declare var jQuery;
@@ -11,10 +11,14 @@ declare var jQuery;
 export class Bl {
 
 
-  _BaseUrl = 'https://ckid-ckid.appspot.com/_ah/api/ckid_server/v1/'
+  //_BaseUrl = 'https://ckid-ckid.appspot.com/_ah/api/ckid_server/v1/'
+  _BaseUrl = 'http://localhost:9090/_ah/api/watch_kid_server/v1/'
+
   _UploadUrl = 'https://ckid-ckid.appspot.com/api/'
 
   _Kindergarten = new Kindergarten();
+  _Client = new Client();
+
 
   constructor(public http: Http,private router : Router) {
     let LocalKindergarten = JSON.parse( localStorage.getItem('Kindergarten'));
@@ -31,17 +35,17 @@ export class Bl {
     }
   }
   GetAllKindergarten (): Observable<Kindergarten[]> {
-    let url = 'KindergartenList?order=name';
+    let url = 'kindergarten?order=name';
 
     url =  this._BaseUrl + url;
-    
+
     return this.http.get(url)
       .map(this.GetAllKindergartenExtractData)
       .catch(this.GetAllKindergartenHandleError);
   }
 
   GetKindergarten() {
-    let url = 'KindergartenList' + '?userUrlID=' + this._Kindergarten.auth.email;
+    let url = 'kindergarten' + '?kindergarten_id=' + this._Kindergarten.auth.email;
 
     url =  this._BaseUrl + url;
 
@@ -68,12 +72,15 @@ export class Bl {
     let body = JSON.stringify(this._Kindergarten);
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
-    let url = 'Kindergarten_insert'
+    let url = 'kindergarten'
 
+    debugger;
     url =  this._BaseUrl + url;
-    
+
+
+
     console.log(body);
-    localStorage.setItem('Kindergarten',body);
+    localStorage.setItem('kindergarten',body);
 
     return this.http.post(url, body, options)
       .map(this.SaveKindergartenExtractData)
@@ -104,6 +111,7 @@ export class Bl {
 
   Logout()
   {
+    debugger;
 
     localStorage.removeItem('id_token');
     localStorage.removeItem('profile');
@@ -141,7 +149,7 @@ export class Bl {
 
     this._Kindergarten.auth =  auth ;
 
-    this.router.navigateByUrl('/site/RegisterChild');
+    this.router.navigateByUrl('/site/RegisterKindergarten');
     this.GetKindergarten();;
 
   }

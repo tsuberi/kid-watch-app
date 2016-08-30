@@ -1,127 +1,103 @@
-export class Payment {
-  _Date: string = '';
-  _Status: string = '';
+export class AuthData {
+  email : string = '';
+  name : string = '';
+  given_name : string = '';
+  family_name : string = '';
+  picture : string = '';
+  provider : string = '';
+  gender : string = '';
+  locale : string = '';
+  clientID : string = '';
+  user_id : string = '';
+  nickname : string = '';
+  token   : string = '';
+  global_client_id: string = '';
 
   constructor() {
-    // code...
   }
-};
+}
 
 
-export class Phone {
-  _Name: string = '';
-  _Phone: string = '';
-
+export class Location {
+  country : string = '';
+  city : string = '';
+  address : string = '';
   constructor() {
-    // code...
   }
-};
+}
 
-export class Responsible {
-  name: string = '';
-  title: string = '';
-  phone: string = '';
-
-  constructor() {}
-};
 
 
 export class Employee {
-
-  name: string = '';
-  position: string = '';
-  cellPhone: string = '';
-  city: string = '';
-  address: string = '';
-  email: string = '';
-  experience: string = '';
-  image: string = '';
-  birthDay: string = '';
-
+  location: Location = new Location();
+  name : string = '';
+  position : string = '';
+  cell_phone : string = '';
+  email : string = '';
+  image : string = '';
+  birth_day : string = '';
+  experience : string = '';
   constructor() {
-    // code...
   }
-};
-export class Child {
-
-  name: string = '' ;
-  image: string = '' ;
-  birthDay: string = '' ;
-  gander: string = '' ;
-  kindergarten_id: string = '' ;
-  constructor() {
-    // code...
-  }
-};
-
-//
-
-export class Location {
-  country: string = '';
-  city: string = '';
-  address: string = '';
-};
-
-export class ContactInformation {
-  MainPhone: string = '';
-  CellPhone: string = '';
-  Email: string = '';
-  Facebook: string = '';
-
-};
-
-export class AuthData {
-  email: string = '';
-  name: string = '';
-  given_name: string = '';
-  family_name: string = '';
-  picture: string = '';
-  gender: string = '';
-  locale: string = '';
-  clientID: string = '';
-  user_id: string = '';
-  nickname: string = '';
-  provider: string = '';
-  token: string = '';
-  global_client_id: string = '';
-};
-
-export class Time{
-  constructor(hour?:number, minutes?:number) {
-    if(hour !== undefined)
-      this.hour = hour;
-    if(minutes !== undefined)
-      this.minutes = minutes;
-  }
-
-  hour: number = 9;
-  minutes: number = 30;
 }
+
 
 export class Kindergarten {
-
-  name: string = '';
-  location: Location = new Location();
-  contactInformation: ContactInformation = new ContactInformation();
-  child_list: Child [] = [];
-  responsibles: Responsible[] = [];
-  employee_list: Employee[] = [];
-  email: string = '';
-  phone: string = '';
-  cellPhone: string = '';
-  contact_name: string = '';
-  facebook: string = '';
-  description: string = '';
-  image: string = '';
-  language: string = '';
-  active_date: string = '';
-  userUrlID: string = '';
-  kindergarten_id: string = null;
   auth: AuthData = new AuthData();
-  open_time = new Time();
-  close_time = new Time(16,0);
-
+  location: Location = new Location();
+  opening_hour : number = 8;
+  opening_minutes : number = 0;
+  closing_hour : number = 16;
+  closing_minutes : number = 0;
+  is_working_on_friday : boolean = false;
+  working_on_saturday : boolean = false;
+  working_on_sunday : boolean = false;
+  employee_list: Employee[] = [];
+  child_list :  Child[] = [];
+  name : string = '';
+  email: string = '';
+  phone : string = '';
+  cell_phone : string = '';
+  contact_name : string = '';
+  facebook : string = '';
+  description : string = '';
+  kindergarten_id: string = '';
 
   constructor() {
   }
 }
+
+
+
+export class Child {
+  kindergarten_key: Kindergarten = new Kindergarten();
+  name : string = '';
+  picture : string = '';
+  birth_day : string = '';
+  gender : string = '';
+  isArrived : boolean = false;
+  constructor() {
+  }
+}
+
+
+export class Responsible {
+  name : string = '';
+  relation : string = '';
+  phone : string = '';
+  constructor() {
+  }
+}
+
+
+export class Client {
+  auth: AuthData = new AuthData();
+  email : string = '';
+  child_list: Child = new Child();
+  responsible_list: Responsible[] = [];
+  password : string = '';
+
+  constructor() {
+  }
+}
+

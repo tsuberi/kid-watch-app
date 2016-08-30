@@ -44,7 +44,7 @@ export class ChildComponent implements OnInit {
 
     jQuery(this._ChildItem.nativeElement)
       .modal('show');
-    
+
   }
 
   @HostListener('mouseleave') onMouseLeave() {
@@ -74,7 +74,7 @@ export class ChildComponent implements OnInit {
       });
 
     if (this._Child)
-      this._Url = this._BL._UploadUrl + "view_photo/" + this._Child.image;
+      this._Url = this._BL._UploadUrl + "view_photo/" + this._Child.picture;
     // .transition('bounce', '2000ms')
 
   }
@@ -87,7 +87,7 @@ export class ChildComponent implements OnInit {
   constructor(private _BL: Bl) {
 
     if ( this._Child )
-      this._Url  = _BL._UploadUrl + "view_photo/" + this._Child.image;
+      this._Url  = _BL._UploadUrl + "view_photo/" + this._Child.picture;
 
   }
 
