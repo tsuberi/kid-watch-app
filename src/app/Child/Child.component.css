@@ -26,3 +26,12 @@
 .flex{
   flex:1;
 }
+
+
+.cover{
+  min-height: 200px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}

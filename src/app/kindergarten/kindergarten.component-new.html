@@ -1,19 +1,25 @@
 <div class="ui top fixed inverted green menu">
   <h2 class="header item">
-    הגן של משה
+{{_Name}}
+
   </h2>
   <div class="item">
     <my-clock></my-clock>
   </div>
   <h4 class="header item">
-    כרגע בגן: 6 ילדים מתוך 20
+
+    כרגע בגן:  {{_MaxArrived}} ילדים מתוך
+    {{_MaxChilds}}
   </h4>
   <div class="left menu">
     <h4 class="header item">
-      שעת הכניסה: 7:30
+
+      שעת הכניסה:
+      {{_InTime}}
     </h4>
     <h4 class="header item">
-      שעת היציאה: 16:30
+      שעת היציאה:
+      {{_OutTime}}
     </h4>
   </div>
 </div>
@@ -26,7 +32,9 @@
   <br>
   <br>
   <div class="ui cards">
-    <div style="margin-left : auto; margin-right:auto" class="ui card" child [_Child]="c" *ngFor="let c of mockChilds">
+
+
+    <div style="margin-left : auto; margin-right:auto" class="ui card" child [_Child]="c" *ngFor="let c of _BL._Kindergarten.child_list">
     </div>
   </div>
 </div>

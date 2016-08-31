@@ -11,10 +11,15 @@ declare var jQuery;
 export class Bl {
 
 
-  //_BaseUrl = 'https://ckid-ckid.appspot.com/_ah/api/ckid_server/v1/'
-  _BaseUrl = 'http://localhost:9090/_ah/api/watch_kid_server/v1/'
 
-  _UploadUrl = 'https://ckid-ckid.appspot.com/api/'
+  _BaseUrl = 'https://ckid-ckid.appspot.com/_ah/api/watch_kid_server/v1/'
+
+  //_BaseUrl = 'http://localhost:9090/_ah/api/watch_kid_server/v1/'
+
+  //_UploadUrl = 'https://ckid-ckid.appspot.com/api/'
+  _UploadUrl = 'http://watch-kid.com/api/'
+
+
 
   _Kindergarten = new Kindergarten();
   _Client = new Client();
@@ -49,6 +54,34 @@ export class Bl {
       .catch(this.GetAllKindergartenHandleError);
   }
 
+  GetClient() {
+
+
+    let url = 'client' + '?email=' + this._Client.auth.email;
+
+    url =  this._BaseUrl + url;
+
+
+    this.http.get(url)
+      .map(res => res.text())
+      .subscribe(
+        data => {
+
+          let client = JSON.parse(data);
+
+          if (client['items'] !== undefined) {
+            this._Client = client['items'][0];
+            localStorage.setItem('client', JSON.stringify(this._Client));
+
+          }
+          this.router.navigateByUrl('/site/RegisterChild');
+
+        },
+        err => console.log, //this.logError(err),
+        () => console.log('Random Quote Complete')
+      );
+  }
+
   GetKindergarten() {
     let url = 'kindergarten' + '?kindergarten_id=' + this._Kindergarten.auth.email;
 
@@ -59,18 +92,23 @@ export class Bl {
       .map(res => res.text())
       .subscribe(
         data => {
+
           let Kindergarten = JSON.parse(data);
 
           if (Kindergarten['items'] !== undefined) {
             this._Kindergarten = Kindergarten['items'][0];
             localStorage.setItem('Kindergarten', JSON.stringify(this._Kindergarten));
+            this.router.navigateByUrl('/site/RegisterKindergarten');
           }
-
+          else{
+            this.GetClient();
+          }
         },
         err => console.log, //this.logError(err),
         () => console.log('Random Quote Complete')
       );
   }
+
 
 
   SaveKindergarten(): Observable<Kindergarten> {
@@ -102,11 +140,11 @@ export class Bl {
 
 
   SaveClient(): Observable<Client> {
-    this._Client.auth = this._Kindergarten.auth;
+    //this._Client.auth = this._Kindergarten.auth;
     let body = JSON.stringify(this._Client);
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
-    let url = 'child';
+    let url = 'client';
 
     url =  this._BaseUrl + url;
 
@@ -143,12 +181,17 @@ export class Bl {
 
   Logout()
   {
+
     localStorage.removeItem('id_token');
     localStorage.removeItem('profile');
     localStorage.removeItem('Kindergarten');
     localStorage.removeItem('Client');
 
+    this._Client = new Client();
     this._Kindergarten = new Kindergarten();
+    this.router.navigateByUrl('/');
+
+
   }
 
   Login(profile,id_token)
@@ -181,8 +224,8 @@ export class Bl {
     this._Kindergarten.auth =  auth ;
     this._Client.auth =  auth ;
 
-    this.router.navigateByUrl('/site/RegisterKindergarten');
-    this.GetKindergarten();;
+
+    this.GetKindergarten();
 
   }
 }

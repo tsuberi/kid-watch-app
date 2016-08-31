@@ -121,7 +121,7 @@ export class RegisterKindergartenComponent implements OnInit {
       return;
     }
 
-    debugger;
+   
 
     this._NewEmp = new Employee();
     this._NewEmp.location.country = 'Israel';

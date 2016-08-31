@@ -68,6 +68,7 @@ export class RegisterChildComponent implements OnInit {
   }
 
   addChild() {
+   
     this._NewChild = new Child();
     this._NewChild.name = this._Name;
     this._NewChild.picture = this._Image;

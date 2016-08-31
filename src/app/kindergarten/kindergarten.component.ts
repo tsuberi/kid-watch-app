@@ -18,12 +18,31 @@ declare var jQuery;
 export class KindergartenComponent implements OnInit {
 
   _Url : string = '';
-  mockChilds = [new Child(),new Child(),new Child(),new Child(),new Child()];
+  _Name :  string = '';
+  _InTime :  string = '';
+  _OutTime :  string = '';
+  _MaxChilds : number = 0;
+  _MaxArrived : number = 0;
+
+
 
 
   constructor(private _BL: Bl,public http: Http) {
 
+    debugger;
     this._Url  = _BL._UploadUrl;
+    this._Name = _BL._Kindergarten.name;
+    this._InTime  = _BL._Kindergarten.opening_hour  +":" +  _BL._Kindergarten.opening_minutes ;
+    this._OutTime  = _BL._Kindergarten.closing_hour  +":" +  _BL._Kindergarten.closing_minutes ;
+    this._MaxChilds = _BL._Kindergarten.child_list.length;
+
+    for (let c of _BL._Kindergarten.child_list){
+      if ( c.in_date != ''){
+        this._MaxArrived++;
+      }
+    }
+
+
 
     jQuery('.special.cards .image').dimmer({
       on: 'hover'

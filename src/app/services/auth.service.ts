@@ -39,7 +39,6 @@ export class Auth {
 
     this._BL.Logout();
 
-
     this.authenticated();
   };
 

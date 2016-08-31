@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import webapp2
-from classes import Image
 
 from google.appengine.api import images
 from google.appengine.api import users
@@ -70,6 +69,7 @@ class oauth2callback(webapp.RequestHandler):
 
 class uploadKey(webapp.RequestHandler):
     def get(self):
+        self.response.headers['Access-Control-Allow-Origin'] = '*'
         upload_url = blobstore.create_upload_url('/api/upload_photo')
         # The method must be "POST" and enctype must be set to "multipart/form-data".
         self.response.out.write(upload_url)

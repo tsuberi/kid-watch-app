@@ -76,6 +76,9 @@ export class Child {
   gender : string = '';
   in_date : string = '';
   out_date : string = '';
+  client_key : string = '';
+  client_email : string = '';
+  parent_id : string = '';
   constructor() {
   }
 }

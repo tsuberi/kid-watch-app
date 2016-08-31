@@ -1,6 +1,7 @@
 import {Component, OnInit, Input, Directive, HostListener, ViewChild} from '@angular/core';
-import {Child} from "../bl/models";
+import {Child, Responsible} from "../bl/models";
 import {Bl} from "../bl/bl";
+import {Http, Headers, RequestOptions} from '@angular/http';
 
 declare let jQuery;
 
@@ -17,29 +18,40 @@ export class ChildComponent implements OnInit {
   @ViewChild('ChildItem') _ChildItem;
   _Arrived : boolean = true;
 
-  password: string;
+  _Password: string;
+  _Responsible : Responsible [] = [];
 
-  @HostListener('mouseenter') onMouseEnter() {
 
 
-    jQuery('.eli').dimmer({
-      on: 'hover'
-    });
-  }
-
-  @HostListener('click') onclick() {
-
-    jQuery(this._ChildItem.nativeElement)
-      .modal('show');
+  parseDate(inDate)
+  {
+    return new Date(inDate)
 
   }
 
-  @HostListener('mouseleave') onMouseLeave() {
 
-    jQuery('.eli').dimmer({
-      on: 'hover'
-    });
+  GetPassword() {
 
+    let url = 'client' + '?email=' + this._Child.parent_id;
+    url =  this._BL._BaseUrl + url;
+
+    this.http.get(url)
+      .map(res => res.text())
+      .subscribe(
+        data => {
+
+
+          let client = JSON.parse(data);
+
+
+
+          if (client['items'] !== undefined) {
+            this._Responsible = client.items[0].responsible_list;
+          }
+        },
+        err => console.log, //this.logError(err),
+        () => console.log('Random Quote Complete')
+      );
   }
 
 
@@ -61,6 +73,7 @@ export class ChildComponent implements OnInit {
         interval: 100
       });
 
+    this.GetPassword();
 
     var $toggle  = jQuery('.ui.toggle.button');
     $toggle
@@ -80,11 +93,10 @@ export class ChildComponent implements OnInit {
   }
 
 
-  constructor(private _BL: Bl) {
+  constructor(private _BL: Bl,private http: Http) {
 
     if ( this._Child )
       this._Url  = _BL._UploadUrl + "view_photo/" + this._Child.picture;
-
 
   }
 
@@ -97,11 +109,21 @@ export class ChildComponent implements OnInit {
   }
 
   onClick(){
-    if(this.isArrived())
-      this._Child.out_date = new Date().toISOString().replace('Z', '0').replace('+', '.');
-    else
-      this._Child.in_date = new Date().toISOString().replace('Z', '0').replace('+', '.');
 
-    this._BL.SaveKindergarten().subscribe();
+    for (let r of this._Responsible) {
+
+      if ( r.phone == this._Password)
+      {
+        if(this.isArrived())
+          this._Child.out_date = new Date().toISOString().replace('Z', '0').replace('+', '.');
+        else
+          this._Child.in_date = new Date().toISOString().replace('Z', '0').replace('+', '.');
+
+        this._Password = '';
+        this._BL.SaveKindergarten().subscribe();
+      }
+    }
+
+
   }
 }
