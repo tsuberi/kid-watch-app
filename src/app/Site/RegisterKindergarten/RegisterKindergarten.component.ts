@@ -8,13 +8,14 @@ import {FORM_DIRECTIVES} from "@angular/forms";
 import {CORE_DIRECTIVES, NgStyle, NgClass} from "@angular/common";
 import {FILE_UPLOAD_DIRECTIVES, FileUploader} from "ng2-file-upload/ng2-file-upload";
 import {Kindergarten, Employee} from "../../bl/models";
+import {ROUTER_DIRECTIVES, Router} from "@angular/router";
 
 declare var jQuery;
 
 
 @Component({
   selector: 'register-kindergarten',
-  directives: [EmployeeComponent,FILE_UPLOAD_DIRECTIVES, NgClass, NgStyle, CORE_DIRECTIVES, FORM_DIRECTIVES],
+  directives: [EmployeeComponent,FILE_UPLOAD_DIRECTIVES, NgClass, NgStyle, CORE_DIRECTIVES, FORM_DIRECTIVES,ROUTER_DIRECTIVES],
   providers: [ Auth],
   templateUrl: './RegisterKindergarten.component.html',
   styleUrls: ['./RegisterKindergarten.component.css'],
@@ -53,13 +54,21 @@ export class RegisterKindergartenComponent implements OnInit {
   _EmployeeEmail = '';
   _EmployeeExperience = '';
   _EmployeeImage = '';
-  _EmployeeBirthday = '';
+  _OpeningTime = '';
+  _ClosingTime = '';
+  _GMT : number = 3;
 
-  constructor(private _BL:Bl, public http:Http, private auth:Auth) {
 
 
-    console.log(_BL);
 
+
+
+
+  constructor(private _BL:Bl, public http:Http, private auth:Auth , private router : Router) {
+
+/*
+    if ( ! this.auth.authenticated())
+      this.router.navigateByUrl('/');*/
 
     this.uploader.onCompleteItem  = (fileItem, response, status, headers) =>{
       console.info('onSuccessItem', fileItem, response, status, headers);
@@ -77,6 +86,15 @@ export class RegisterKindergartenComponent implements OnInit {
 
   public fileOverAnother(e:any):void {
     this.hasAnotherDropZoneOver = e;
+  }
+
+
+  logout() {
+    /*if (this.auth.authenticated()) {
+     this.auth.logout();
+     }*/
+    this._BL.Logout();
+
   }
 
   upload()
@@ -121,7 +139,7 @@ export class RegisterKindergartenComponent implements OnInit {
       return;
     }
 
-   
+
 
     this._NewEmp = new Employee();
     this._NewEmp.location.country = 'Israel';
@@ -133,6 +151,7 @@ export class RegisterKindergartenComponent implements OnInit {
     this._NewEmp.email = this._EmployeeEmail;
     this._NewEmp.image = this._EmployeeImage;
     this._NewEmp.experience = this._EmployeeExperience;
+
 
 
     if ( ! this._BL._Kindergarten.employee_list )
@@ -150,9 +169,148 @@ export class RegisterKindergartenComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (!this.auth.authenticated())
+   /* if (!this.auth.authenticated())
       this.auth.login()
 
+*/
+    jQuery('#_sunday_opeing_time').calendar({
+      type: 'time',
+      ampm: false,
+      onChange: (val)=> {
+        this._BL._Kindergarten.schedule.sunday_opeing_time = new Date(val).toLocaleTimeString('en-US', { hour12: false,hour: "numeric",minute: "numeric"});
+      }
+    });
+
+    jQuery('#_sunday_closing_time').calendar({
+      type: 'time',
+      ampm: false,
+      onChange: (val)=> {
+        this._BL._Kindergarten.schedule.sunday_closing_time = new Date(val).toLocaleTimeString('en-US', { hour12: false,hour: "numeric",minute: "numeric"});
+      }
+    });
+
+    jQuery('#_monday_opeing_time').calendar({
+      type: 'time',
+      ampm: false,
+      onChange: (val)=> {
+        this._BL._Kindergarten.schedule.monday_opeing_time = new Date(val).toLocaleTimeString('en-US', { hour12: false,hour: "numeric",minute: "numeric"});
+      }
+    });
+
+    jQuery('#_monday_closing_time').calendar({
+      type: 'time',
+      ampm: false,
+      onChange: (val)=> {
+        this._BL._Kindergarten.schedule.monday_closing_time = new Date(val).toLocaleTimeString('en-US', { hour12: false,hour: "numeric",minute: "numeric"});
+      }
+    });
+
+    jQuery('#_tuesday_opeing_time').calendar({
+      type: 'time',
+      ampm: false,
+      onChange: (val)=> {
+        this._BL._Kindergarten.schedule.tuesday_opeing_time = new Date(val).toLocaleTimeString('en-US', { hour12: false,hour: "numeric",minute: "numeric"});
+      }
+    });
+
+    jQuery('#_tuesday_closing_time').calendar({
+      type: 'time',
+      ampm: false,
+      onChange: (val)=> {
+        this._BL._Kindergarten.schedule.tuesday_closing_time = new Date(val).toLocaleTimeString('en-US', { hour12: false,hour: "numeric",minute: "numeric"});
+      }
+    });
+
+    jQuery('#_wednesday_opeing_time').calendar({
+      type: 'time',
+      ampm: false,
+      onChange: (val)=> {
+        this._BL._Kindergarten.schedule.wednesday_opeing_time = new Date(val).toLocaleTimeString('en-US', { hour12: false,hour: "numeric",minute: "numeric"});
+      }
+    });
+
+    jQuery('#_wednesday_closing_time').calendar({
+      type: 'time',
+      ampm: false,
+      onChange: (val)=> {
+        this._BL._Kindergarten.schedule.wednesday_closing_time = new Date(val).toLocaleTimeString('en-US', { hour12: false,hour: "numeric",minute: "numeric"});
+      }
+    });
+
+    jQuery('#_thursday_opeing_time').calendar({
+      type: 'time',
+      ampm: false,
+      onChange: (val)=> {
+        this._BL._Kindergarten.schedule.thursday_opeing_time = new Date(val).toLocaleTimeString('en-US', { hour12: false,hour: "numeric",minute: "numeric"});
+      }
+    });
+
+    jQuery('#_thursday_closing_time').calendar({
+      type: 'time',
+      ampm: false,
+      onChange: (val)=> {
+        this._BL._Kindergarten.schedule.thursday_closing_time = new Date(val).toLocaleTimeString('en-US', { hour12: false,hour: "numeric",minute: "numeric"});
+      }
+    });
+
+    jQuery('#_friday_opeing_time').calendar({
+      type: 'time',
+      ampm: false,
+      onChange: (val)=> {
+        this._BL._Kindergarten.schedule.friday_opeing_time = new Date(val).toLocaleTimeString('en-US', { hour12: false,hour: "numeric",minute: "numeric"});
+      }
+    });
+
+    jQuery('#_friday_closing_time').calendar({
+      type: 'time',
+      ampm: false,
+      onChange: (val)=> {
+        this._BL._Kindergarten.schedule.friday_closing_time = new Date(val).toLocaleTimeString('en-US', { hour12: false,hour: "numeric",minute: "numeric"});
+      }
+    });
+
+    jQuery('#_saturday_opeing_time').calendar({
+      type: 'time',
+      ampm: false,
+      onChange: (val)=> {
+        this._BL._Kindergarten.schedule.saturday_opeing_time = new Date(val).toLocaleTimeString('en-US', { hour12: false,hour: "numeric",minute: "numeric"});
+      }
+    });
+
+    jQuery('#_saturday_closing_time').calendar({
+      type: 'time',
+      ampm: false,
+      onChange: (val)=> {
+        this._BL._Kindergarten.schedule.saturday_closing_time = new Date(val).toLocaleTimeString('en-US', { hour12: false,hour: "numeric",minute: "numeric"});
+      }
+    });
+
+
+    jQuery('#_event_start_date').calendar({
+      type: 'date',
+      ampm: false,
+      onChange: (val)=> {
+        this._BL._Kindergarten.holyday.holyday_start_dete = new Date(val).toLocaleTimeString('en-US', { hour12: false,hour: "numeric",minute: "numeric"});
+      }
+    });
+
+    jQuery('#_event_end_date').calendar({
+      type: 'date',
+      ampm: false,
+      onChange: (val)=> {
+        this._BL._Kindergarten.holyday.holyday_end_dete = new Date(val).toLocaleTimeString('en-US', { hour12: false,hour: "numeric",minute: "numeric"});
+      }
+    });
+
+    
+
+
+
+
+    jQuery('.dropdown')
+      .dropdown({
+        maxSelections: 1
+      });
 
     jQuery('.EmployeeComponent')
     //.transition('swing down')
@@ -180,10 +338,7 @@ export class RegisterKindergartenComponent implements OnInit {
 
   save(){
 
-    this._BL._Kindergarten.opening_minutes = 5;
-    this._BL._Kindergarten.opening_hour = 5;
 
-    console.log(this._BL._Kindergarten );
 
     this._BL.SaveKindergarten().subscribe();
   }

@@ -22,18 +22,16 @@ export class EmployeeComponent implements OnInit {
     let index = this._BL._Kindergarten.employee_list.indexOf(this._Employee);
 
     if (index !== -1) {
-      console.log('deleteing item');
-      console.log(this._BL._Kindergarten.employee_list);
+      
       this._BL._Kindergarten.employee_list.splice(index, 1);
-      console.log(this._BL._Kindergarten.employee_list);
+      
       this._BL.SaveKindergarten().subscribe();
     }
   }
 
 
   ngOnInit() {
-    console.log('Hello Employee');
-
+  
     jQuery('.EmployeeComponent')
 
       .show('slow')

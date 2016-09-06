@@ -25,9 +25,11 @@ export class SiteComponent implements OnInit {
   }
 
   logout() {
-    if (this.auth.authenticated()) {
+    /*if (this.auth.authenticated()) {
       this.auth.logout();
-    }
+    }*/
+    this._BL.Logout();
+
   }
 
   loggedin() {

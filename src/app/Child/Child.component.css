@@ -35,3 +35,8 @@
   -o-background-size: cover;
   background-size: cover;
 }
+
+
+.Password {
+  -webkit-text-security: disc;
+}

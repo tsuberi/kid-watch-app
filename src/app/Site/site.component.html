@@ -1,18 +1,13 @@
-<br>
+
 <div class="ui secondary pointing menu container">
-  <a [routerLink]="['/site/RegisterChild']" [routerLinkActive]="'active'" class="item">
-    הילדים שלי
-  </a>
-  <a [routerLink]="['/site/RegisterKindergarten']" [routerLinkActive]="'active'"  class="item">
-    הגן שלי
-  </a>
-  <a [routerLink]="['/kindergarten']" [routerLinkActive]="'active'"  class="item">
-    נוכחות בגן
-  </a>
+  <div class="right menu">
+    <a  class="item">
+      <img  height="35" width="35" src="/img/watchkid.png">
+    </a>
+  </div>
+
   <div class="left menu">
- <!--   <a *ngIf="!auth.authenticated()" [routerLink]="['/site/login']" class="item">
-      הכנס
-    </a>-->
+
     <a *ngIf="auth.authenticated()" (click)="logout()"  class="item">
       <img  height="35" width="35" [src]="_BL._Kindergarten.auth.picture">
       &nbsp;

@@ -12,7 +12,7 @@ export class LandingPageComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		console.log('Hello lLandingPageComponent');
+		
 	}
 
 }

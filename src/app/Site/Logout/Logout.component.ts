@@ -11,8 +11,7 @@ import {Kindergarten} from "../../bl/models";
 export class LogoutComponent implements OnInit {
 
   ngOnInit() {
-    console.log('Hello HomeRegister');
-
+    
   }
 
   ngOnDestroy() {

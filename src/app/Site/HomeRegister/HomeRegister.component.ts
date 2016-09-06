@@ -8,8 +8,7 @@ import {Component, OnInit} from '@angular/core';
 export class HomeRegisterComponent implements OnInit {
 
   ngOnInit() {
-    console.log('Hello HomeRegister');
-
+    
   }
 
   ngOnDestroy() {

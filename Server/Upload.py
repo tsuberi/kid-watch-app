@@ -101,7 +101,6 @@ class SendSMSTest(webapp2.RequestHandler):
 
 
 
-
 class SendSMS(webapp2.RequestHandler):
     def get(self, phone):
         # replace with your credentials from: https://www.twilio.com/user/account
@@ -109,13 +108,15 @@ class SendSMS(webapp2.RequestHandler):
         ACCOUNT_SID = "ACee3212de166539f38ec6533956597360"
         AUTH_TOKEN = "74f1e17261ece29f7b311f12af1b1888"
 
+        body = "בוקר טוב,\n אורי הגיע לגן בשעה (08:05)\n\nבברכה,\nWatch-kid"
+
         client = TwilioRestClient(ACCOUNT_SID, AUTH_TOKEN)
         rv = client.messages.create(
             #to="+972584633355", 
             to = phone,
             
             from_="+972526269220", 
-            body="test from watch kid" +  "\n"+ "מיסרון ניסיון מ - watcjkid",  
+            body=body  
         )   
 
         self.response.out.write('Sms OK' + str(rv))

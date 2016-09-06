@@ -33,8 +33,12 @@
   <br>
   <div class="ui cards">
 
+    <my-child style="margin-left : auto; margin-right:auto" class="ui card"
+              child [_Child]="c"
+              [_Kindergarten]=" _BL._Kindergarten"
 
-    <div style="margin-left : auto; margin-right:auto" class="ui card" child [_Child]="c" *ngFor="let c of _BL._Kindergarten.child_list">
-    </div>
+              *ngFor="let c of _BL._Kindergarten.child_list">
+
+    </my-child>
   </div>
 </div>

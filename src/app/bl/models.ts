@@ -41,13 +41,62 @@ export class Employee {
 }
 
 
+export class Payment {
+  start_date : string = '';
+  end_date : string = '';
+  pay_date : string = '';
+  constructor() {
+  }
+}
+
+
+
+export class Holiday {
+  holyday_start_dete : string = '';
+  holyday_end_dete : string = '';
+  holyday_reason : string = '';
+  holyday_title : string = '';
+  is_active : boolean = false;
+  constructor() {
+  }
+}
+
+
+export class Schedule {
+  sunday : boolean = true;
+  monday : boolean = true;
+  tuesday : boolean = true;
+  wednesday : boolean = true;
+  thursday : boolean = true;
+  friday : boolean = false;
+  saturday : boolean = false;
+  sunday_opeing_time  : string = '08:00';
+  monday_opeing_time  : string = '08:00';
+  tuesday_opeing_time  : string = '08:00';
+  wednesday_opeing_time  : string = '08:00';
+  thursday_opeing_time  : string = '08:00';
+  friday_opeing_time  : string = '08:00';
+  saturday_opeing_time  : string = '08:00';
+  sunday_closing_time  : string = '16:00';
+  monday_closing_time  : string = '16:00';
+  tuesday_closing_time  : string = '16:00';
+  wednesday_closing_time  : string = '16:00';
+  thursday_closing_time  : string = '16:00';
+  friday_closing_time  : string = '16:00';
+  saturday_closing_time  : string = '16:00';
+
+  constructor() {
+  }
+}
+
+
 export class Kindergarten {
+  holyday =  new Holiday();
+  schedule =  new Schedule();
   auth: AuthData = new AuthData();
   location: Location = new Location();
-  opening_hour : number = 8;
-  opening_minutes : number = 0;
-  closing_hour : number = 16;
-  closing_minutes : number = 0;
+  opening_time : string  = '08:00'
+  closing_time : string  = '16:00'
   is_working_on_friday : boolean = false;
   working_on_saturday : boolean = false;
   working_on_sunday : boolean = false;
@@ -62,13 +111,21 @@ export class Kindergarten {
   description : string = '';
   kindergarten_id: string = '';
 
+
+
+
   constructor() {
   }
 }
 
 
 
+
+
+
+
 export class Child {
+
   kindergarten_id: string = '';
   name : string = '';
   picture : string = '';
@@ -79,6 +136,7 @@ export class Child {
   client_key : string = '';
   client_email : string = '';
   parent_id : string = '';
+
   constructor() {
   }
 }
@@ -93,12 +151,31 @@ export class Responsible {
 }
 
 
+
+export class SmsQ {
+  is_send: boolean = false;
+  use_loop: boolean = false;
+  sms_type : string = '';
+  need_replay: boolean = false;
+  send_date : string = '';
+  kid_name : string = '';
+  send_date_request : string = '';
+  responsible_name : string = '';
+  responsible_relation: string = '';
+  responsible_phone : string = '';
+  parent_id : string = '';
+
+  constructor() {
+  }
+}
+
 export class Client {
   auth: AuthData = new AuthData();
   email : string = '';
   child_list: Child[] = [];
   responsible_list: Responsible[] = [];
   password : string = '';
+
 
   constructor() {
   }

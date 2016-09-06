@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Rx';
 import {Http, Headers, RequestOptions} from '@angular/http';
-import {Kindergarten, AuthData , Client} from './models';
+import {Kindergarten, AuthData , Client ,SmsQ} from './models';
 import {Router} from "@angular/router";
 
 declare var jQuery;
@@ -12,12 +12,15 @@ export class Bl {
 
 
 
-  _BaseUrl = 'https://ckid-ckid.appspot.com/_ah/api/watch_kid_server/v1/'
-
-  //_BaseUrl = 'http://localhost:9090/_ah/api/watch_kid_server/v1/'
-
-  //_UploadUrl = 'https://ckid-ckid.appspot.com/api/'
+  //production
+  //_BaseUrl = 'https://ckid-ckid.appspot.com/_ah/api/watch_kid_server/v1/'
   _UploadUrl = 'http://watch-kid.com/api/'
+
+  //local
+  _BaseUrl = 'http://localhost:9090/_ah/api/watch_kid_server/v1/'
+  //_UploadUrl = 'https://ckid-ckid.appspot.com/api/'
+
+
 
 
 
@@ -71,10 +74,10 @@ export class Bl {
 
           if (client['items'] !== undefined) {
             this._Client = client['items'][0];
-            localStorage.setItem('client', JSON.stringify(this._Client));
+            localStorage.setItem('Client', JSON.stringify(this._Client));
 
           }
-          this.router.navigateByUrl('/site/RegisterChild');
+
 
         },
         err => console.log, //this.logError(err),
@@ -98,7 +101,7 @@ export class Bl {
           if (Kindergarten['items'] !== undefined) {
             this._Kindergarten = Kindergarten['items'][0];
             localStorage.setItem('Kindergarten', JSON.stringify(this._Kindergarten));
-            this.router.navigateByUrl('/site/RegisterKindergarten');
+
           }
           else{
             this.GetClient();
@@ -111,7 +114,43 @@ export class Bl {
 
 
 
+  SaveSmsQ(SmsQ): Observable<SmsQ> {
+
+    var yesterday = new Date(new Date().setDate(new Date().getDate()-1));
+
+    let body = JSON.stringify(SmsQ);
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
+    let url = 'smsq'
+
+    url =  this._BaseUrl + url;
+
+    console.log(JSON.stringify(SmsQ));
+
+    localStorage.setItem('SmsQ',body);
+
+    return this.http.post(url, body, options)
+      .map(this.SaveSmsQExtractData)
+      .catch(this.SaveSmsQHandleError);
+
+  }
+
+
+  SaveSmsQHandleError(err: any) {
+    return Observable.throw(err);
+  }
+
+  SaveSmsQExtractData(data): Kindergarten[] {
+
+    return data;
+  }
+
+
+
   SaveKindergarten(): Observable<Kindergarten> {
+
+    var yesterday = new Date(new Date().setDate(new Date().getDate()-1));
+
     let body = JSON.stringify(this._Kindergarten);
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
@@ -119,7 +158,10 @@ export class Bl {
 
     url =  this._BaseUrl + url;
 
-    console.log(body);
+
+    console.log(JSON.stringify(this._Kindergarten));
+
+
     localStorage.setItem('Kindergarten',body);
 
     return this.http.post(url, body, options)
@@ -129,12 +171,14 @@ export class Bl {
   }
 
 
+
+
   SaveKindergartenHandleError(err: any) {
     return Observable.throw(err);
   }
 
   SaveKindergartenExtractData(data): Kindergarten[] {
-    console.log(data);
+
     return data;
   }
 
@@ -147,8 +191,9 @@ export class Bl {
     let url = 'client';
 
     url =  this._BaseUrl + url;
+    console.log(JSON.stringify(this._Client));
 
-    console.log(body);
+
     localStorage.setItem('Client',body);
 
     return this.http.post(url, body, options)
@@ -175,7 +220,6 @@ export class Bl {
   GetAllKindergartenExtractData(data): Kindergarten[] {
 
     let items =  JSON.parse(data._body)['items'] ;
-    console.log(items);
     return items;
   }
 
@@ -183,7 +227,7 @@ export class Bl {
   {
 
     localStorage.removeItem('id_token');
-    localStorage.removeItem('profile');
+    localStorage.removeItem('Profile');
     localStorage.removeItem('Kindergarten');
     localStorage.removeItem('Client');
 
@@ -196,7 +240,7 @@ export class Bl {
 
   Login(profile,id_token)
   {
-    localStorage.setItem('profile', JSON.stringify(profile));
+    localStorage.setItem('Profile', JSON.stringify(profile));
     localStorage.setItem('id_token', id_token);
     let p = JSON.parse(JSON.stringify(profile));
 
@@ -223,7 +267,6 @@ export class Bl {
 
     this._Kindergarten.auth =  auth ;
     this._Client.auth =  auth ;
-
 
     this.GetKindergarten();
 

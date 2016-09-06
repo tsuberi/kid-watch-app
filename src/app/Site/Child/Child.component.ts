@@ -19,18 +19,16 @@ export class ChildComponent implements OnInit  {
     let index = this._BL._Client.child_list.indexOf(this._Child);
 
     if (index !== -1) {
-      console.log('deleteing item');
-      console.log(this._BL._Client.child_list);
+      
       this._BL._Client.child_list.splice(index, 1);
-      console.log(this._BL._Client.child_list);
+     
       this._BL.SaveClient().subscribe();
     }
   }
 
 
   ngOnInit() {
-    console.log('Hello ChildComponent');
-
+   
     jQuery('.ChildComponent')
 
       .show('slow')

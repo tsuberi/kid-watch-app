@@ -1,4 +1,4 @@
-import {Injectable}      from '@angular/core';
+import {Injectable,NgZone}      from '@angular/core';
 import {tokenNotExpired} from 'angular2-jwt';
 import {Bl} from '../bl/bl';
 
@@ -13,22 +13,28 @@ export class Auth {
   userProfile: Object;
 
 
-  constructor(private _BL: Bl) {
+  constructor(private _BL: Bl , private _zone: NgZone) {
   }
 
   public login() {
 
+    var self = this;
     // Call the show method to display the widget.
     this.lock.show((err: string, profile: string, id_token: string) => {
       if (err) {
         throw new Error(err);
       }
 
-      this._BL.Login(profile,id_token);
+
+      this._zone.run(() => {
+        self._BL.Login(profile,id_token);
+      });
+
+
 
     });
 
-    this.authenticated();
+    self.authenticated();
   };
 
   public authenticated() {

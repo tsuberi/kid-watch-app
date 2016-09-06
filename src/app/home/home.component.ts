@@ -26,9 +26,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-	  console.log('Hello HomeComponent');
-
-
+	 
     jQuery('.special.cards .image').dimmer({
       on: 'hover'
     });

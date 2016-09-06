@@ -8,8 +8,7 @@ import {Component, OnInit} from '@angular/core';
 export class HomeSiteComponent implements OnInit {
 
   ngOnInit() {
-    console.log('Hello HomeSiteComponent');
-
+   
   }
 
   ngOnDestroy() {

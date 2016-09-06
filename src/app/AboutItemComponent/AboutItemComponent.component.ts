@@ -13,7 +13,7 @@ export class AboutItemComponent implements OnInit {
 	paramsSub: any;
 
 	ngOnInit() {
-		console.log('Hello AboutItemComponent');
+	
 		this.paramsSub = this.activatedRoute.params.subscribe(params => this.id = +params['id']);
 	}
 

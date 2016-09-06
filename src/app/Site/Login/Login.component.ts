@@ -11,7 +11,7 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
 
   ngOnInit() {
-    console.log('Hello HomeRegister');
+    
   }
 
   ngOnDestroy() {
@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     }
     else
     {
-      router.navigateByUrl('/site/RegisterChild') ;
+      //router.navigateByUrl('/site/RegisterChild') ;
     }
 
   }

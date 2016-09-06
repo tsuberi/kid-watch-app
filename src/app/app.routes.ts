@@ -13,6 +13,9 @@ import {RegisterChildComponent} from './site/RegisterChild';
 export const routes: RouterConfig = [
   {path: '', component: HomeComponent},
   {path: 'kindergarten', component: KindergartenComponent},
+  {path: 'RegisterChild', component: RegisterChildComponent},
+  {path: 'RegisterKindergarten', component: RegisterKindergartenComponent},
+
   {path: 'home', component: HomeComponent},
   {
     path: 'site',

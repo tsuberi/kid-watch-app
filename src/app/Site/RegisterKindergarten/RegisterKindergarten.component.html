@@ -1,4 +1,6 @@
-<div class="ui container">
+
+
+<div class="ui container stackable">
   <div class="ui big olive message">
     <h1>
       רישום גן למערכת WatchKid
@@ -25,7 +27,14 @@
   </div>
 
 </div>
-
+<div class="ui center aligned container padded">
+  <br/>
+  <br/>
+  <button [routerLink]="['/kindergarten']" class="ui labeled icon green  button massive">
+    <i class="alarm outline icon"></i>
+    הפעל מערכת
+  </button>
+</div>
 <div class="ui  Subject  container">
   פרטים כללים
   <div class="ui left floated green button" (click)="save()" style="margin-top: -10px;" >
@@ -36,11 +45,8 @@
 
 
 </div>
-
-
 <div class="ui   container">
-
-<div class="ui   container equal width form KindergartenForm">
+<div class="ui   container equal width form KindergartenForm stackable">
   <div class="fields">
     <div class="field">
       <label>שם הגן </label>
@@ -76,19 +82,354 @@
     </div>
   </div>
 
-  <div class="inline fields">
-    <div class="field">
-      <label>שעת פתיחה</label>
-      <input [(ngModel)]="_BL._Kindergarten.opening_minutes" type="number" placeholder="mm">:
-      <input [(ngModel)]="_BL._Kindergarten.opening_hour" type="number" placeholder="HH">
 
-    </div>
-    <div class="field">
-      <label>שעת סגירה</label>
-      <input [(ngModel)]="_BL._Kindergarten.closing_minutes" type="number" placeholder="mm">:
-      <input [(ngModel)]="_BL._Kindergarten.closing_hour" type="number" placeholder="HH">
+
+  <div class="ui  Subject  container">
+     שעות פתיחה
+    <div class="ui divider"></div>
+  </div>
+
+
+  <div class="fields">
+
+
+  <div class="field four wide column">
+    <label>יום בשבוע</label>
+    <div class="ui calendar" >
+      <div class="ui checked checkbox">
+        <input [(ngModel)]="_BL._Kindergarten.schedule.sunday" style="padding-top:10px; " type="checkbox"  />
+        <label></label>
+      </div>
+      <label style="vertical-align: super;" >ראשון</label>
     </div>
   </div>
+  <div  class="field four wide column">
+    <label>שעת פתיחה </label>
+    <div class="ui calendar" id="_sunday_opeing_time">
+      <div class="ui input right icon">
+        <i class="calendar icon"></i>
+        <input  style="text-align: right;" class="ui left floated" type="text" placeholder="08:00">
+      </div>
+    </div>
+  </div>
+  <div  class="field four wide column">
+    <label>  שעת סגירה</label>
+    <div class="ui calendar" id="_sunday_closing_time">
+      <div class="ui input right icon">
+        <i class="calendar icon"></i>
+        <input [(ngModel)]="_ClosingTime" style="text-align: right;" class="ui left floated" type="text"
+               placeholder="16:00">
+      </div>
+    </div>
+  </div>
+  <div class="field">
+
+  </div>
+</div>
+  <div class="fields ">
+
+
+    <div class="field four wide column">
+
+      <div class="ui calendar" >
+        <div class="ui checked checkbox">
+          <input [(ngModel)]="_BL._Kindergarten.schedule.monday" style="padding-top:10px; " type="checkbox"  />
+          <label></label>
+        </div>
+        <label style="vertical-align: super;" >שני</label>
+      </div>
+    </div>
+
+    <div class="field four wide column">
+
+      <div class="ui calendar" id="_monday_opeing_time">
+        <div class="ui input right icon">
+          <i class="calendar icon"></i>
+          <input [(ngModel)]="_OpeningTime" style="text-align: right;" class="ui left floated" type="text"
+                 placeholder="08:00">
+        </div>
+      </div>
+    </div>
+    <div  class="field four wide column">
+
+      <div class="ui calendar" id="_monday_closing_time">
+        <div class="ui input right icon">
+          <i class="calendar icon"></i>
+          <input [(ngModel)]="_ClosingTime" style="text-align: right;" class="ui left floated" type="text"
+                 placeholder="16:00">
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+
+    </div>
+  </div>
+  <div class="fields">
+
+
+    <div class="field four wide column">
+
+      <div class="ui calendar" >
+        <div class="ui checked checkbox">
+          <input [(ngModel)]="_BL._Kindergarten.schedule.tuesday" style="padding-top:10px; " type="checkbox"  />
+          <label></label>
+        </div>
+        <label style="vertical-align: super;" >שלישי</label>
+      </div>
+    </div>
+
+    <div  class="field four wide column">
+
+      <div class="ui calendar" id="_tuesday_opeing_time">
+        <div class="ui input right icon">
+          <i class="calendar icon"></i>
+          <input [(ngModel)]="_OpeningTime" style="text-align: right;" class="ui left floated" type="text"
+                 placeholder="08:00">
+        </div>
+      </div>
+    </div>
+    <div class="field four wide column">
+
+      <div class="ui calendar" id="_tuesday_closing_time">
+        <div class="ui input right icon">
+          <i class="calendar icon"></i>
+          <input [(ngModel)]="_ClosingTime" style="text-align: right;" class="ui left floated" type="text"
+                 placeholder="16:00">
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+
+    </div>
+  </div>
+  <div class="fields">
+
+
+    <div class="field four wide column">
+
+      <div class="ui calendar" >
+        <div class="ui checked checkbox">
+          <input [(ngModel)]="_BL._Kindergarten.schedule.wednesday" style="padding-top:10px; " type="checkbox"  />
+          <label></label>
+        </div>
+        <label style="vertical-align: super;" >רביעי</label>
+      </div>
+    </div>
+
+    <div class="field four wide column">
+
+      <div class="ui calendar" id="_wednesday_opeing_time">
+        <div class="ui input right icon">
+          <i class="calendar icon"></i>
+          <input [(ngModel)]="_OpeningTime" style="text-align: right;" class="ui left floated" type="text"
+                 placeholder="08:00">
+        </div>
+      </div>
+    </div>
+    <div  class="field four wide column">
+
+      <div class="ui calendar" id="_wednesday_closing_time">
+        <div class="ui input right icon">
+          <i class="calendar icon"></i>
+          <input [(ngModel)]="_ClosingTime" style="text-align: right;" class="ui left floated" type="text"
+                 placeholder="16:00">
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+
+    </div>
+  </div>
+  <div class="fields">
+
+
+    <div class="field four wide column">
+
+      <div class="ui calendar" >
+        <div class="ui checked checkbox">
+          <input [(ngModel)]="_BL._Kindergarten.schedule.thursday" style="padding-top:10px; " type="checkbox"  />
+          <label></label>
+        </div>
+        <label style="vertical-align: super;" >חמישי</label>
+      </div>
+    </div>
+
+    <div  class="field four wide column">
+
+      <div class="ui calendar" id="_thursday_opeing_time">
+        <div class="ui input right icon">
+          <i class="calendar icon"></i>
+          <input [(ngModel)]="_OpeningTime" style="text-align: right;" class="ui left floated" type="text"
+                 placeholder="08:00">
+        </div>
+      </div>
+    </div>
+    <div  class="field four wide column">
+
+      <div class="ui calendar" id="_thursday_closing_time">
+        <div class="ui input right icon">
+          <i class="calendar icon"></i>
+          <input [(ngModel)]="_ClosingTime" style="text-align: right;" class="ui left floated" type="text"
+                 placeholder="16:00">
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+
+    </div>
+  </div>
+  <div class="fields">
+
+
+    <div class="field four wide column">
+
+      <div class="ui calendar" >
+        <div class="ui checked checkbox">
+          <input [(ngModel)]="_BL._Kindergarten.schedule.friday" style="padding-top:10px; " type="checkbox"  />
+          <label></label>
+        </div>
+        <label style="vertical-align: super;" >שישי</label>
+      </div>
+    </div>
+
+    <div  class="field four wide column">
+
+      <div class="ui calendar" id="_friday_opeing_time">
+        <div class="ui input right icon">
+          <i class="calendar icon"></i>
+          <input [(ngModel)]="_OpeningTime" style="text-align: right;" class="ui left floated" type="text"
+                 placeholder="08:00">
+        </div>
+      </div>
+    </div>
+    <div  class="field four wide column">
+
+      <div class="ui calendar" id="_friday_closing_time">
+        <div class="ui input right icon">
+          <i class="calendar icon"></i>
+          <input [(ngModel)]="_ClosingTime" style="text-align: right;" class="ui left floated" type="text"
+                 placeholder="16:00">
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+
+    </div>
+  </div>
+  <div class="fields">
+
+
+    <div class="field four wide column">
+
+      <div class="ui calendar" >
+        <div class="ui checked checkbox">
+          <input [(ngModel)]="_BL._Kindergarten.schedule.saturday" style="padding-top:10px; " type="checkbox"  />
+          <label></label>
+        </div>
+        <label style="vertical-align: super;" >שבת</label>
+      </div>
+    </div>
+
+    <div  class="field four wide column">
+
+      <div class="ui calendar" id="_saturday_opeing_time">
+        <div class="ui input right icon">
+          <i class="calendar icon"></i>
+          <input [(ngModel)]="_OpeningTime" style="text-align: right;" class="ui left floated" type="text"
+                 placeholder="08:00">
+        </div>
+      </div>
+    </div>
+    <div  class="field four wide column">
+
+      <div class="ui calendar" id="_saturday_closing_time">
+        <div class="ui input right icon">
+          <i class="calendar icon"></i>
+          <input [(ngModel)]="_ClosingTime" style="text-align: right;" class="ui left floated" type="text"
+                 placeholder="16:00">
+        </div>
+      </div>
+    </div>
+
+    <div class="field">
+
+    </div>
+  </div>
+
+
+
+  <div class="ui  Subject  container">
+    חופשות ואירועי מערכת
+    <div class="ui divider"></div>
+  </div>
+
+
+  <div class="fields stackable ">
+
+
+    <div class="field four wide column ">
+      <label>&nbsp;</label>
+      <div class="ui calendar" >
+        <div class="ui checked checkbox">
+          <input [(ngModel)]="_BL._Kindergarten.holyday.is_active" style="padding-top:10px; " type="checkbox"  />
+          <label></label>
+        </div>
+        <label style="vertical-align: super;" >פעיל</label>
+      </div>
+    </div>
+    <div  class="field">
+      <label>תחילת אירוע  </label>
+      <div class="ui calendar" id="_event_start_date">
+        <div class="ui input right icon">
+          <i class="calendar icon"></i>
+          <input  style="text-align: right;" class="ui left floated" type="text" placeholder="08:00">
+        </div>
+      </div>
+    </div>
+    <div  class="field">
+      <label>  סוף אירוע </label>
+      <div class="ui calendar" id="_event_end_date">
+        <div class="ui input right icon">
+          <i class="calendar icon"></i>
+          <input  style="text-align: right;" class="ui left floated" type="text"
+                 placeholder="16:00">
+        </div>
+      </div>
+    </div>
+    <div class="field">
+
+    </div>
+  </div>
+  <div class="fields">
+
+
+
+    <div  class="field four wide column ">
+      <label>כותרת אירוע</label>
+      <input [(ngModel)]="_BL._Kindergarten.holyday.holyday_title" type="text" placeholder="כותרת האירוע">
+    </div>
+    <div  class="field ">
+      <label>  הודעה </label>
+      <input [(ngModel)]="_BL._Kindergarten.holyday.holyday_reason"   type="text" placeholder=" תוכן ההודעה">
+    </div>
+    <div class="field">
+
+    </div>
+  </div>
+
+
+
+  <div *ngIf="_BL._Kindergarten.employee_list" class="ui  Subject  container">
+    מפעלי הגן
+    <div class="ui divider"></div>
+  </div>
+
+
 
   <div   *ngFor="let e of _BL._Kindergarten.employee_list;let i=index">
     <div class="ui EmployeeComponent ">

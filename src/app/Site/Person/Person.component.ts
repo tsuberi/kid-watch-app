@@ -8,8 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class PersonComponent implements OnInit {
 
 	ngOnInit() {
-		console.log('Hello Person');
-
+		
 	}
 
 	ngOnDestroy() {
