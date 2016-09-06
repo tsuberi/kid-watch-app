@@ -290,7 +290,8 @@ export class RegisterKindergartenComponent implements OnInit {
       type: 'date',
       ampm: false,
       onChange: (val)=> {
-        this._BL._Kindergarten.holyday.holyday_start_dete = new Date(val).toLocaleTimeString('en-US', { hour12: false,hour: "numeric",minute: "numeric"});
+        debugger;
+        this._BL._Kindergarten.holiday.holiday_start_dete = val.toISOString().replace('Z', '0').replace('+', '.');
       }
     });
 
@@ -298,11 +299,11 @@ export class RegisterKindergartenComponent implements OnInit {
       type: 'date',
       ampm: false,
       onChange: (val)=> {
-        this._BL._Kindergarten.holyday.holyday_end_dete = new Date(val).toLocaleTimeString('en-US', { hour12: false,hour: "numeric",minute: "numeric"});
+        this._BL._Kindergarten.holiday.holiday_end_dete = val.toISOString().replace('Z', '0').replace('+', '.');
       }
     });
 
-    
+
 
 
 

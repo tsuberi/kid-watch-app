@@ -52,10 +52,10 @@ export class Payment {
 
 
 export class Holiday {
-  holyday_start_dete : string = '';
-  holyday_end_dete : string = '';
-  holyday_reason : string = '';
-  holyday_title : string = '';
+  holiday_start_dete : string = '2000-01-01 00:00:00.000000';
+  holiday_end_dete : string = '2000-01-01 00:00:00.000000';
+  holiday_reason : string = '';
+  holiday_title : string = '';
   is_active : boolean = false;
   constructor() {
   }
@@ -91,7 +91,7 @@ export class Schedule {
 
 
 export class Kindergarten {
-  holyday =  new Holiday();
+  holiday =  new Holiday();
   schedule =  new Schedule();
   auth: AuthData = new AuthData();
   location: Location = new Location();
