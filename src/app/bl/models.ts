@@ -52,8 +52,8 @@ export class Payment {
 
 
 export class Holiday {
-  holiday_start_dete : string = '2000-01-01 00:00:00.000000';
-  holiday_end_dete : string = '2000-01-01 00:00:00.000000';
+  holiday_start_dete : string = '2000-01-01T00:00:00.000000';
+  holiday_end_dete : string = '2000-01-01T00:00:00.000000';
   holiday_reason : string = '';
   holiday_title : string = '';
   is_active : boolean = false;
