@@ -1,0 +1,13 @@
+indexes:
+
+- kind: Kindergarten
+  properties:
+  - name: cron_flag
+  - name: cron_date
+  
+# - kind: SmsQ
+#   properties:
+#   - name: is_send
+#   - name: sms_type
+
+#   

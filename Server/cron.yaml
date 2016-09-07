@@ -1,0 +1,10 @@
+cron:
+- description: main task handler job
+  url: /task/main_task_handler
+  target: beta
+  schedule: every 5 mins
+
+- description: main sms_q
+  url: /task/sms_q
+  target: beta
+  schedule: every 5 mins

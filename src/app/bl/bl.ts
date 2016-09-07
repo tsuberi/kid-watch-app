@@ -13,11 +13,11 @@ export class Bl {
 
 
   //production
-  _BaseUrl = 'https://ckid-ckid.appspot.com/_ah/api/watch_kid_server/v1/'
+  //_BaseUrl = 'https://ckid-ckid.appspot.com/_ah/api/watch_kid_server/v1/'
   _UploadUrl = 'http://watch-kid.com/api/'
 
   //local
-  //_BaseUrl = 'http://localhost:9090/_ah/api/watch_kid_server/v1/'
+  _BaseUrl = 'http://localhost:9090/_ah/api/watch_kid_server/v1/'
   //_UploadUrl = 'https://ckid-ckid.appspot.com/api/'
 
 
