@@ -8,3 +8,9 @@ cron:
   url: /task/sms_q
   target: beta
   schedule: every 5 mins
+
+
+- description: holiday_task_handler
+  url: /task/holiday_task_handler
+  target: beta
+  schedule: every 13 hours

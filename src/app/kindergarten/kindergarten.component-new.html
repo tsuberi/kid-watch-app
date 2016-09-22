@@ -1,25 +1,38 @@
 <div class="ui top fixed inverted green menu">
+  <button (click)="Refresh()" class="ui icon green button">
+    <i class="refresh icon"></i>
+  </button>
+
   <h2 class="header item">
 {{_Name}}
 
   </h2>
-  <div class="item">
+  <div  class="item">
     <my-clock></my-clock>
   </div>
   <h4 class="header item">
 
-    כרגע בגן:  {{_MaxArrived}} ילדים מתוך
-    {{_MaxChilds}}
+    כרגע בגן:  {{_BL._Kindergarten.max_arrived}} ילדים מתוך
+    {{_BL._Kindergarten.child_list.length }}
+    &nbsp;&nbsp;&nbsp;
+    {{_BL._Kindergarten.max_left}}
+
+    עזבו את הגן
+
+
   </h4>
+
   <div class="left menu">
     <h4 class="header item">
 
       שעת הכניסה:
-      {{_InTime}}
+      {{_BL.getOpeningTime()}}
     </h4>
     <h4 class="header item">
       שעת היציאה:
-      {{_OutTime}}
+
+      {{_BL.getClosingTime()}}
+
     </h4>
   </div>
 </div>

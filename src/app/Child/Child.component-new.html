@@ -1,24 +1,28 @@
 
 <div class="ui slide masked reveal image">
   <img src="{{_Url}}" class="visible content cover ">
-  <div   class="hidden content hidden-form inverted container">
+  <div     class="hidden content hidden-form inverted container">
 
-    <h3  >הזן סיסמא על מנת לאשר הגעה</h3>
+    <!--<h3  >הזן סיסמא על מנת לאשר הגעה</h3>
 
-    <br>
-    <div  class="ui input">
+
+    <br>-->
+   <!-- <div  class="ui input">
       <input class="Password" type="password" pattern="[0-9]*" inputmode="numeric"  placeholder="סיסמא" [(ngModel)]="_Password" >
 
     </div>
     <div *ngIf="_WrongPassword && _Password">
 
-      {{_WrongPassword}}
-    </div>
+
+    </div>-->
     <br>
     <br>
-    <button  (click)="onClick()" class="ui right labeled icon red huge button" [ngClass]="{red: _InOutToggle, green: !_InOutToggle}">
+    <button  (click)="onClick()" class="ui right labeled icon red huge button" [ngClass]="{red: ( !_BL._Kindergarten_Openinig_Toggle || _Arrived ), green: _BL._Kindergarten_Openinig_Toggle}">
       <i class="sign out icon" [ngClass]="{'sign out': _Child.in_date , checkmark:!_InOutToggle}"></i>
-      {{_InOutToggle ? 'יצאתי !' : 'נכנסתי'}}
+
+      {{ _BL._Kindergarten_Openinig_Toggle && _Arrived  ? 'יצאתי' : 'נכנסתי'}}
+
+
     </button>
   </div>
 </div>
@@ -28,27 +32,27 @@
     <span class="date">
 
       נולד ב-
-      {{ parseDate(_Child.birth_day) | date : "dd/MM/yyyy"}}
+      {{ getBirthday() | date : "dd/MM/yyyy"}}
     </span>
   </div>
 </div>
 
 <div class="extra content">
-  <h3 *ngIf="_Arrived" class="ui green header">
+  <h3 *ngIf="_Arrived  " class="ui green header">
     <i class="checkmark icon"></i>
     <div class="content">
 
       הגעתי ב-
-      {{ parseDate(_Child.in_date) | date : "HH:mm"}}
-
+      {{ parseDate(_Child.in_date) }}
     </div>
   </h3>
-  <h3 *ngIf="_Laft" class="ui red header">
+
+  <h3 *ngIf="_Left" class="ui red header">
     <i class="sign out icon"></i>
     <div class="content">
 
       יצאתי ב-
-      {{ parseDate(_Child.out_date) | date : "HH:mm"}}
+      {{ parseDate(_Child.out_date) }}
 
     </div>
   </h3>

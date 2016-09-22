@@ -28,62 +28,259 @@
 
 </div>
 
+
 <div   class="ui  Subject  container">
-  חיפוש גן
+  <button *ngIf="_BL._Client.child_list" (click)="ShowAddChild()"  class="ui right labeled icon button" >
+    <i class="right arrow icon"></i>
+    הוספת ילד\ה
+  </button>
+  <button *ngIf="!_BL._Client.child_list" (click)="ShowAddChild()"  class="ui right labeled icon button disabled" >
+    <i class="right arrow icon"></i>
+    הוספת ילד\ה
+  </button>
+  <button  class="ui right labeled icon  button" (click)="ShowAddResponsible()" >
+    <i class="right arrow icon"></i>
+    הוספת אחראים
+  </button>
+
+  <button  class="ui left  labeled icon green left floated button" (click)="saveResponsibles()" >
+    <i class="right arrow icon"></i>
+    שמור
+  </button>
+
+
+  <div class="ui modal AddResponsible  ">
+    <div class="ui   container">
+      <!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+      <div  class="ui   container equal width form">
+        <div class="ui Subject  container">
+          <div class="ui header right floated ">הוספת אחראי</div>
+          <br/>
+          <div class="ui divider"></div>
+          <div class="four fields ">
+            <div class="field ui one column right aligned page grid">
+              <label>שם</label>
+              <input type="text" placeholder="דוגמא: חיים" [(ngModel)]="_FreshResponsible.name">
+            </div>
+            <div class="field ui one column right aligned page grid">
+              <label>יחס לילד</label>
+              <input type="text" placeholder="דוגמא: אבא, סבא ,אמא, דוד ..."  [(ngModel)]="_FreshResponsible.relation">
+            </div>
+            <div class="field ui one column right aligned page grid">
+              <label>מספר טלפון</label>
+              <input type="text" placeholder="דוגמא: 058-1230123"  [(ngModel)]="_FreshResponsible.phone">
+            </div>
+
+            <div class="field ui one column right aligned page ">
+              <label>&nbsp;</label>
+              <div class="ui vertical animated    green button left floated " tabindex="0" (click)="addResponsible()">
+                <div class="hidden content">הוסף</div>
+                <div class="visible content">
+                  <i class="plus icon"></i>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+
+          <div *ngFor="let _Responsible of _Responsibles">
+
+
+
+            <div class="ui secondary segment">
+              <a class="ui left corner red label" (click)="removeResponsible(_Responsible)">
+                <i class="trash outline icon"></i>
+              </a>
+
+              <div class="ui form">
+
+                <div class="four fields ">
+                  <div class="field ui one column right aligned page grid">
+                    <label>שם</label>
+                    {{_Responsible.name}}
+                  </div>
+                  <div class="field ui one column right aligned page grid">
+                    <label>יחס לילד</label>
+                    {{_Responsible.relation}}
+                  </div>
+                  <div class="field ui one column right aligned page grid">
+                    <label>מספר טלפון</label>
+                    {{_Responsible.phone}}
+                  </div>
+
+
+                </div>
+
+              </div>
+
+            </div>
+            <br/>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui modal Addchild  ">
+    <div class="ui   container">
+      <div  class="ui   container equal width form">
+        <div class="ui Subject  container">
+          <div class="ui header right floated ">הוספת ילד</div>
+          <br/>
+          <div class="ui divider"></div>
+          <div class="ui secondary segment ">
+            <div class="fields">
+              <label>בחרו את גן הילד\ה</label>
+            </div>
+            <div class="fields">
+              <div *ngIf="_KindergartenList" class="field">
+                <select #sel (change)="onChange(sel.value)">
+                  <option  value="{{Kindergarten.auth.email}}" *ngFor="let Kindergarten of _KindergartenList; let i = index" [selected]="i == 0">
+                    <h2>
+                      {{Kindergarten.name}}
+                    </h2>
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="ui green segment EmployeeComponent ">
+              <div class="ui divided items">
+                <div class="item">
+                  <div style="width: 50%;padding-left: 20px;" class=" ui medium image">
+                    <div id="MapContainer">&nbsp;</div>
+                  </div>
+                  <div *ngIf="_SelectedKindergartenList" class="content  ">
+                    <div class="ui horizontal ">
+                      <table class="ui very basic  table right aligned column">
+                        <tbody>
+                        <tr>
+                          <td>
+                            <span >שם :</span>
+                            <span ><b>{{_SelectedKindergartenList.name}}</b> </span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span >עיר : </span>
+                            <span ><b>{{_SelectedKindergartenList.location.city}}</b></span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span >כתובת :</span>
+                            <span ><b>{{_SelectedKindergartenList.location.address}}</b></span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span >טלפון נייד : </span>
+                            <span ><b>{{_SelectedKindergartenList.cellPhone}}</b></span>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span >טלפון : </span>
+                            <span ><b>{{_SelectedKindergartenList.phone}}</b></span>
+                          </td>
+                        </tr>
+                        </tbody>
+                      </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            <br/>
+            <br/>
+            <div class="ui header right floated ">פרטי הילד\ה</div>
+            <br/>
+            <div class="ui divider"></div>
+            <div class="fields">
+              <div class="field ui one column right aligned page grid">
+                <label class="ui right floated ">שם הילד/ה</label>
+                <input class="ui " [(ngModel)]="_Name" type="text" placeholder="שם הילד/ה">
+              </div>
+              <div class="field ui one column right aligned page grid ">
+                <label class="ui right floated " >תאריך לידה</label>
+                <div class="ui calendar" id="calendar">
+                  <div class="ui input right icon">
+                    <i class="calendar icon"></i>
+                    <input [(ngModel)]="_BirthDay" style="text-align: right;" class="ui left floated" type="text"
+                           placeholder="תאריך לידה">
+                  </div>
+                </div>
+              </div>
+              <div  class="field choise">
+                <div class="inline fields">
+                  <div class="field">מין</div>
+                  <div  class="field">
+                    <div class="ui radio checkbox">
+                      <input #male name="gender" type="radio" value="Male" (click)="_Gander = 'Boy'"/>
+                      <label>בן</label>
+                    </div>
+                  </div>
+                  <div   class="field">
+                    <div class="ui radio checkbox">
+                      <input #female name="gender" type="radio" value="Female" (click)="_Gander = 'Girl'"/>
+                      <label>בת</label>
+                    </div>
+                  </div>
+                  <div class="field"></div>
+                </div>
+              </div>
+            </div>
+            <div class="ui grid">
+              <div class="three wide left floated  column">
+                <div>
+                  <label for="file" class="ui icon blue  right floated   button">
+                    <i class="file icon"></i>                  תמונה
+                  </label>
+                  <input type="file" id="file" ng2FileSelect [uploader]="uploader" style="display:none"
+                         accept="image/jpg,image/png,image/jpeg,image/gif">
+                </div>
+              </div>
+              <div class="thirteen wide column">
+                <div class="progress" style="">
+                  <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }">
+                    <div *ngIf="uploader.progress">
+                      {{ uploader.progress}}%
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="fields">
+              <div class="field ">
+                <div class="ui vertical animated    teal button left floated " tabindex="0" (click)="addChild()">
+                  <div class="hidden content">הוסף</div>
+                  <div class="visible content">
+                    <i class="plus icon"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div   *ngIf="_BL._Client.child_list"  class="ui  Subject  container">
+
+  הילדים שלי
   <div class="ui divider"></div>
 </div>
 
 <div   class="ui   container">
   <div class="ui   container equal width form">
-    <div class="fields">
-      <div *ngIf="_KindergartenList" class="field">
 
-        <select #sel (change)="onChange(sel.value)">
-          <option  value="{{Kindergarten.auth.email}}" *ngFor="let Kindergarten of _KindergartenList; let i = index" [selected]="i == 0">
-            <h2>
-              {{Kindergarten.name}}
-            </h2>
-          </option>
-        </select>
-      </div>
-    </div>
 
-    <div class="ui green segment EmployeeComponent ">
-      <div class="ui divided items">
-        <div class="item">
-          <div style="width: 50%;padding-left: 20px;" class=" ui medium image">
-            <div id="MapContainer">&nbsp;</div>
-          </div>
-          <div *ngIf="_SelectedKindergartenList" class="content  ">
-
-            <div class="meta">
-              <span class="cinema">שם :</span>
-              <span class="cinema"><b>{{_SelectedKindergartenList.name}}</b> </span>
-            </div>
-            <div class="meta">
-              <span class="cinema">עיר : </span>
-              <span class="cinema"><b>{{_SelectedKindergartenList.location.city}}</b></span>
-            </div>
-            <div class="meta">
-              <span class="cinema">כתובת :</span>
-              <span class="cinema"><b>{{_SelectedKindergartenList.location.address}}</b></span>
-            </div>
-            <div class="meta">
-              <span class="cinema">טלפון נייד : </span>
-              <span class="cinema"><b>{{_SelectedKindergartenList.cellPhone}}</b></span>
-            </div>
-            <div class="meta">
-              <span class="cinema">טלפון : </span>
-              <span class="cinema"><b>{{_SelectedKindergartenList.phone}}</b></span>
-            </div>
-            <!--<div class="meta">
-              <span class="cinema">דוא"ל : </span>
-              <span class="cinema"><b>{{_SelectedKindergartenList.email}}</b></span>
-            </div>-->
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
   <div class="ui   container">
     <div  class="ui   container equal width form">
@@ -92,149 +289,55 @@
           <my-child [_Child]="e"></my-child>
         </div>
       </div>
-      <div class="ui Subject  container">
 
-        <div class="ui header padding-top40">
-          פרטי הילד/ה
-          <img style="margin-top:-40px;"  class="ui tiny left floated image" src="/img/girl.png">
-          <img style="margin-top:-40px;" class="ui tiny left floated image" src="/img/boy.png">
-
-        </div>
-        <div class="ui divider"></div>
-        <div class="ui secondary segment ">
-          <div class="fields">
-            <div class="field">
-              <label>שם הילד/ה</label>
-              <input [(ngModel)]="_Name" type="text" placeholder="שם הילד/ה">
-            </div>
-            <div class="field">
-              <label>תאריך לידה</label>
-              <div class="ui calendar" id="calendar">
-                <div class="ui input right icon">
-                  <i class="calendar icon"></i>
-                  <input [(ngModel)]="_BirthDay" style="text-align: right;" class="ui left floated" type="text"
-                         placeholder="תאריך לידה">
-                </div>
-              </div>
-            </div>
-            <div style="margin-right: 320px;" class="field choise">
-              <div class="inline fields">
-                <div class="field">מין</div>
-                <div  class="field">
-                  <div class="ui radio checkbox">
-                    <input #male name="gender" type="radio" value="Male" (click)="_Gander = 'Boy'"/>
-                    <label>בן</label>
-                  </div>
-                </div>
-                <div   class="field">
-                  <div class="ui radio checkbox">
-                    <input #female name="gender" type="radio" value="Female" (click)="_Gander = 'Girl'"/>
-                    <label>בת</label>
-                  </div>
-                </div>
-                <div class="field"></div>
-              </div>
-            </div>
-          </div>
-          <div class="ui grid">
-            <div class="two wide column">
-              <div>
-                <label for="file" class="ui icon blue button">
-                  <i class="file icon"></i>                  תמונה
-                </label>
-                <input type="file" id="file" ng2FileSelect [uploader]="uploader" style="display:none"
-                       accept="image/jpg,image/png,image/jpeg,image/gif">
-              </div>
-            </div>
-            <div class="fourteen wide column">
-              <div class="progress" style="">
-                <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }">
-                  <div *ngIf="uploader.progress">
-                    {{ uploader.progress}}%
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!--  <div class="fields">
-              <div class="field">
-                <label>תאור קצר - (ספר על הילד)</label>
-                <textarea [(ngModel)]="_EmployeeExperience" rows="2" ></textarea>
-              </div>
-
-            </div>
-    -->
-          <div class="fields">
-            <div class="field ">
-              <div class="ui vertical animated    teal button left floated " tabindex="0" (click)="addChild()">
-                <div class="hidden content">הוסף</div>
-                <div class="visible content">
-                  <i class="plus icon"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </div>
 
 
-<div class="ui divider"></div>
 <div class="ui vertical segment">
   <div class="ui container">
-    <div class="ui clearing segment">
-      <h3 class="ui right floated header">
-        פרטי אחראים
-      </h3>
-      <h3 class="ui left floated header">
-        <button class="ui green button" (click)="saveResponsibles()">שמור</button>
-      </h3>
-    </div>
-    <div class="ui secondary segment">
-      <div class="ui form">
-        <div class="inline fields">
-          <div class="field">
-            <label>שם</label>
-            <input type="text" placeholder="דוגמא: חיים" [(ngModel)]="_FreshResponsible.name">
-          </div>
-          <div class="field">
-            <label>יחס לילד</label>
-            <input type="text" placeholder="דוגמא: אבא, סבא ,אמא, דוד ..."  [(ngModel)]="_FreshResponsible.relation">
-          </div>
-          <div class="field">
-            <label>מספר טלפון</label>
-            <input type="text" placeholder="דוגמא: 058-1230123"  [(ngModel)]="_FreshResponsible.phone">
-          </div>
-          <button class="ui left floated green button" type="submit" (click)="addResponsible()">הוסף</button>
-        </div>
-      </div>
-    </div>
+
+
+    פרטי אחראים
+    <div class="ui divider"></div>
+
     <br>
     <div *ngFor="let _Responsible of _Responsibles">
-      <div class="ui secondary segment">
-        <a class="ui left corner red label" (click)="removeResponsible(_Responsible)">
-          <i class="trash outline icon"></i>
-        </a>
-        <div class="ui form">
-          <div class="fields">
-            <div class="field">
-              <label>שם</label>
-              {{_Responsible.name}}
+
+
+
+        <div class="ui secondary segment">
+          <a class="ui left corner red label" (click)="removeResponsible(_Responsible)">
+            <i class="trash outline icon"></i>
+          </a>
+
+          <div class="ui form">
+
+            <div class="four fields ">
+              <div class="field ui one column right aligned page grid">
+                <label>שם</label>
+                {{_Responsible.name}}
+              </div>
+              <div class="field ui one column right aligned page grid">
+                <label>יחס לילד</label>
+                {{_Responsible.relation}}
+              </div>
+              <div class="field ui one column right aligned page grid">
+                <label>מספר טלפון</label>
+                {{_Responsible.phone}}
+              </div>
+
+
             </div>
-            <div class="field">
-              <label>יחס לילד</label>
-              {{_Responsible.relation}}
-            </div>
-            <div class="field">
-              <label>מספר טלפון</label>
-              {{_Responsible.phone}}
-            </div>
+
           </div>
+
         </div>
+      <br/>
+
       </div>
-      <br>
+
     </div>
   </div>
 </div>

@@ -52,8 +52,8 @@ export class Payment {
 
 
 export class Holiday {
-  holiday_start_dete : string = '2000-01-01T00:00:00.000000';
-  holiday_end_dete : string = '2000-01-01T00:00:00.000000';
+  holiday_start_dete : string = '2000-01-01T00:00:00.0000';
+  holiday_end_dete : string = '2000-01-01T00:00:00.0000';
   holiday_reason : string = '';
   holiday_title : string = '';
   is_active : boolean = false;
@@ -110,8 +110,8 @@ export class Kindergarten {
   facebook : string = '';
   description : string = '';
   kindergarten_id: string = '';
-
-
+  max_arrived : number = 0;
+  max_left  : number = 0;
 
 
   constructor() {
@@ -164,6 +164,7 @@ export class SmsQ {
   responsible_relation: string = '';
   responsible_phone : string = '';
   parent_id : string = '';
+
 
   constructor() {
   }

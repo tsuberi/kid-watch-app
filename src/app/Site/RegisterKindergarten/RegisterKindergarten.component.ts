@@ -290,8 +290,13 @@ export class RegisterKindergartenComponent implements OnInit {
       type: 'date',
       ampm: false,
       onChange: (val)=> {
-        debugger;
-        this._BL._Kindergarten.holiday.holiday_start_dete = val.toISOString().replace('Z', '0').replace('+', '.');
+       
+        let d = Date.parse(val);
+
+        //this._BL._Kindergarten.holiday.holiday_start_dete = val.toISOString().replace('Z', '0').replace('+', '.');
+        this._BL._Kindergarten.holiday.holiday_start_dete = new Date( new Date(Date.parse(val)).setHours(+4)).toISOString().replace('Z', '0').replace('+', '.');
+
+
       }
     });
 
@@ -300,6 +305,8 @@ export class RegisterKindergartenComponent implements OnInit {
       ampm: false,
       onChange: (val)=> {
         this._BL._Kindergarten.holiday.holiday_end_dete = val.toISOString().replace('Z', '0').replace('+', '.');
+        this._BL._Kindergarten.holiday.holiday_end_dete = new Date( new Date(Date.parse(val)).setHours(+4)).toISOString().replace('Z', '0').replace('+', '.');
+
       }
     });
 

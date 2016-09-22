@@ -13,19 +13,93 @@ export class Bl {
 
 
   //production
-  //_BaseUrl = 'https://ckid-ckid.appspot.com/_ah/api/watch_kid_server/v1/'
+  _BaseUrl = 'https://ckid-ckid.appspot.com/_ah/api/watch_kid_server/v1/'
   _UploadUrl = 'http://watch-kid.com/api/'
 
   //local
-  _BaseUrl = 'http://localhost:9090/_ah/api/watch_kid_server/v1/'
+  //_BaseUrl = 'http://localhost:9090/_ah/api/watch_kid_server/v1/'
   //_UploadUrl = 'https://ckid-ckid.appspot.com/api/'
+  _Opening : string = '08:00'
+  _Closing : string = '17:00'
 
-
+    _Kindergarten_Openinig_Toggle : boolean = false;
 
 
 
   _Kindergarten = new Kindergarten();
   _Client = new Client();
+
+
+  getClosingTime(){
+
+    var d=new Date();
+    var res = null;
+
+    switch ( d.getDay() ){
+      case 0:
+        res = this._Kindergarten.schedule.sunday_closing_time;
+        break;
+      case 1:
+        res = this._Kindergarten.schedule.monday_closing_time;
+        break;
+      case 2:
+        res = this._Kindergarten.schedule.tuesday_closing_time;
+        break;
+      case 3:
+        res = this._Kindergarten.schedule.wednesday_closing_time;
+        break;
+      case 4:
+        res = this._Kindergarten.schedule.thursday_closing_time;
+        break;
+      case 5:
+        res = this._Kindergarten.schedule.friday_closing_time;
+        break;
+      case 6:
+        res = this._Kindergarten.schedule.saturday_closing_time;
+        break;
+
+    }
+
+    this._Closing = res;
+    return res;
+
+  }
+
+
+  getOpeningTime(){
+
+    var d=new Date();
+    var res = null;
+
+    switch ( d.getDay() ){
+      case 0:
+        res = this._Kindergarten.schedule.sunday_opeing_time;
+        break;
+      case 1:
+        res = this._Kindergarten.schedule.monday_opeing_time;
+        break;
+      case 2:
+        res = this._Kindergarten.schedule.tuesday_opeing_time;
+        break;
+      case 3:
+        res = this._Kindergarten.schedule.wednesday_opeing_time;
+        break;
+      case 4:
+        res = this._Kindergarten.schedule.thursday_opeing_time;
+        break;
+      case 5:
+        res = this._Kindergarten.schedule.friday_opeing_time;
+        break;
+      case 6:
+        res = this._Kindergarten.schedule.saturday_opeing_time;
+        break;
+
+    }
+
+    this._Opening = res;
+    return res;
+
+  }
 
 
   constructor(public http: Http,private router : Router) {
@@ -38,6 +112,9 @@ export class Bl {
     if ( LocalClient ){
       this._Client = LocalClient;
     }
+    this.getClosingTime();
+    this.getClosingTime();
+
   }
 
 
@@ -86,6 +163,7 @@ export class Bl {
   }
 
   GetKindergarten() {
+    debugger;
     let url = 'kindergarten' + '?kindergarten_id=' + this._Kindergarten.auth.email;
 
     url =  this._BaseUrl + url;
@@ -100,6 +178,9 @@ export class Bl {
 
           if (Kindergarten['items'] !== undefined) {
             this._Kindergarten = Kindergarten['items'][0];
+            this._Kindergarten.max_arrived = 0;
+            this._Kindergarten.max_left = 0;
+
             localStorage.setItem('Kindergarten', JSON.stringify(this._Kindergarten));
 
           }
@@ -126,8 +207,6 @@ export class Bl {
     url =  this._BaseUrl + url;
 
     console.log(JSON.stringify(SmsQ));
-
-    localStorage.setItem('SmsQ',body);
 
     return this.http.post(url, body, options)
       .map(this.SaveSmsQExtractData)
@@ -179,7 +258,14 @@ export class Bl {
 
   SaveKindergartenExtractData(data): Kindergarten[] {
 
-    return data;
+   /* let Kindergarten = JSON.parse(data);
+
+    if (Kindergarten['items'] !== undefined) {
+      this._Kindergarten = Kindergarten['items'][0];
+      localStorage.setItem('Kindergarten', JSON.stringify(this._Kindergarten));
+*/
+
+      return data;
   }
 
 
@@ -208,6 +294,7 @@ export class Bl {
   }
 
   SaveClientExtractData(data): Client {
+
     return data;
   }
 

@@ -57,9 +57,21 @@ export class RegisterChildComponent implements OnInit {
     this._Responsibles = this._BL._Client.responsible_list;
   }
 
+  ShowAddResponsible(){
+    jQuery('.ui.modal.AddResponsible')
+      .modal('setting', 'transition', 'horizontal flip')
+      .modal('show');
+  }
+
+  ShowAddChild(){
+    jQuery('.ui.modal.Addchild')
+      .modal('setting', 'transition', 'horizontal flip')
+      .modal('show');
+  }
+
   CreateMap() {
     if (this._SelectedKindergartenList) {
-      let url = "https://www.google.com/maps/embed/v1/place?key=AIzaSyAA-xUDSw9hKftpDllGQQ_1iSJSnkxEFmY&q=" + this._SelectedKindergartenList.location.city + " " + this._SelectedKindergartenList.location.address + "&key=AIzaSyAA-xUDSw9hKftpDllGQQ_1iSJSnkxEFmY"
+      let url = "https://www.google.com/maps/embed/v1/place?key=AIzaSyAA-xUDSw9hKftpDllGQQ_1iSJSnkxEFmY&q=" + this._SelectedKindergartenList.location.city + " " + this._SelectedKindergartenList.location.address + "&key=AIzaSyAm1E4psYUmndC0fhpNk39Ql_3YWyPcTss"
       jQuery('#MapContainer').html("<iframe  width='100%'  height='100%' frameborder='0' style='border:0;min-height: 300px;' src='" + url + "' allowfullscreen></iframe>")
     }
   }
@@ -75,6 +87,8 @@ export class RegisterChildComponent implements OnInit {
   }
 
   addChild() {
+
+    debugger;
 
 
     var yesterday = new Date(new Date().setDate(new Date().getDate()-1));
@@ -108,6 +122,13 @@ export class RegisterChildComponent implements OnInit {
 
   ngOnInit() {
 
+
+
+    jQuery('.ui.modal.Addchild')
+      .popup({
+        inline: true
+      })
+    ;
     jQuery('#calendar').calendar({
       type: 'date',
       onChange: (val)=> {

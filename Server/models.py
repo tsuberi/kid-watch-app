@@ -72,6 +72,7 @@ class Holiday(EndpointsModel):
 	holiday_title = ndb.StringProperty()
 	holiday_reason = ndb.StringProperty()
 	is_active = ndb.BooleanProperty(default=False)
+	
 
 
 
@@ -85,6 +86,8 @@ class SmsQ(EndpointsModel):
 	send_date_request = ndb.DateTimeProperty()
 	parent_id =  ndb.StringProperty()
 	kid_name =  ndb.StringProperty()
+	msg =  ndb.StringProperty()
+	title =  ndb.StringProperty()
 	responsible_name = ndb.StringProperty()
 	responsible_relation = ndb.StringProperty()
 	responsible_phone = ndb.StringProperty()
@@ -99,8 +102,7 @@ class Schedule(EndpointsModel):
 	wednesday = ndb.BooleanProperty(default=True)
 	thursday = ndb.BooleanProperty(default=True)
 	friday = ndb.BooleanProperty(default=False)
-	saturday = ndb.BooleanProperty(default=False)	 
-
+	saturday = ndb.BooleanProperty(default=False)
 	sunday_opeing_time  = ndb.StringProperty(default='08:00')
 	monday_opeing_time  = ndb.StringProperty(default='08:00')
 	tuesday_opeing_time  = ndb.StringProperty(default='08:00')
@@ -108,13 +110,13 @@ class Schedule(EndpointsModel):
 	thursday_opeing_time  = ndb.StringProperty(default='08:00')
 	friday_opeing_time  = ndb.StringProperty(default='08:00')
 	saturday_opeing_time  = ndb.StringProperty(default='08:00')
-	sunday_closing_time  = ndb.StringProperty(default='16:00')
-	monday_closing_time  = ndb.StringProperty(default='16:00')
-	tuesday_closing_time  = ndb.StringProperty(default='16:00')
-	wednesday_closing_time  = ndb.StringProperty(default='16:00')
-	thursday_closing_time  = ndb.StringProperty(default='16:00')
-	friday_closing_time  = ndb.StringProperty(default='16:00')
-	saturday_closing_time  = ndb.StringProperty(default='16:00')
+	sunday_closing_time  = ndb.StringProperty(default='17:00')
+	monday_closing_time  = ndb.StringProperty(default='17:00')
+	tuesday_closing_time  = ndb.StringProperty(default='17:00')
+	wednesday_closing_time  = ndb.StringProperty(default='17:00')
+	thursday_closing_time  = ndb.StringProperty(default='17:00')
+	friday_closing_time  = ndb.StringProperty(default='17:00')
+	saturday_closing_time  = ndb.StringProperty(default='17:00')
 
 
 	
@@ -147,7 +149,7 @@ class Kindergarten(EndpointsModel):
 	working_on_saturday = ndb.BooleanProperty(default=False)
 	working_on_sunday = ndb.BooleanProperty(default=False)
 	cron_flag = ndb.BooleanProperty(default=False)
-	cron_date = ndb.DateTimeProperty()	
+	cron_date = ndb.DateTimeProperty(default=datetime.datetime.strptime('2100-01-01T00:00:00.0000', "%Y-%m-%dT%H:%M:%S.%f"))
 	employee_list = ndb.StructuredProperty(Employee,repeated=True)
 	child_list = ndb.StructuredProperty(Child,repeated=True)
 	register_date =  ndb.DateTimeProperty(auto_now_add=True)
@@ -161,9 +163,9 @@ class Kindergarten(EndpointsModel):
 	kindergarten_id = ndb.StringProperty()
 	holiday = ndb.StructuredProperty(Holiday,repeated=False)
 	schedule = ndb.StructuredProperty(Schedule,repeated=False)
+	max_arrived = ndb.IntegerProperty(default=0)
+	max_left = ndb.IntegerProperty(default=0)
 
-	
-	
 	
 	_message_fields_schema = (                             
                               'auth'
@@ -189,6 +191,9 @@ class Kindergarten(EndpointsModel):
                               ,'holiday'
                               ,'schedule'                         
                               ,'kindergarten_id'
+                              ,'max_arrived'
+                              ,'max_left'
+
 
                               )
 
